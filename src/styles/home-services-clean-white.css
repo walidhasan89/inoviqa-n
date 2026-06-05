@@ -1,0 +1,137 @@
+/* ==================================================
+   SERVICES — CLEAN WHITE ACCORDION OVERRIDE
+   All right-column service cards white.
+   Only icon changes to brand gradient on hover/open.
+================================================== */
+
+.home-services-stack {
+  gap: 16px !important;
+}
+
+/* Reset all service cards to clean white */
+.home-services-stack .home-service-item,
+.home-services-stack .home-service-item:nth-child(1),
+.home-services-stack .home-service-item:nth-child(2),
+.home-services-stack .home-service-item:nth-child(3),
+.home-services-stack .home-service-item:nth-child(4),
+.home-services-stack .home-service-item:nth-child(5),
+.home-services-stack .home-service-item:nth-child(6) {
+  color: #101014 !important;
+  border: 1px solid rgba(16, 16, 20, 0.08) !important;
+  background:
+    radial-gradient(circle at 92% 12%, rgba(49, 92, 255, 0.055), transparent 130px),
+    linear-gradient(145deg, rgba(255,255,255,1), rgba(247,248,251,0.92)) !important;
+  box-shadow: none !important;
+}
+
+/* Hover/open card stays clean white, no full multi-color background */
+.home-services-stack .home-service-item:hover,
+.home-services-stack .home-service-item.is-open,
+.home-services-stack .home-service-item:nth-child(1):hover,
+.home-services-stack .home-service-item:nth-child(2):hover,
+.home-services-stack .home-service-item:nth-child(4):hover,
+.home-services-stack .home-service-item:nth-child(1).is-open,
+.home-services-stack .home-service-item:nth-child(2).is-open,
+.home-services-stack .home-service-item:nth-child(4).is-open {
+  color: #101014 !important;
+  border-color: rgba(49, 92, 255, 0.18) !important;
+  background:
+    radial-gradient(circle at 92% 12%, rgba(49, 92, 255, 0.075), transparent 150px),
+    linear-gradient(145deg, rgba(255,255,255,1), rgba(247,248,251,0.96)) !important;
+  box-shadow: 0 24px 80px rgba(16, 16, 20, 0.08) !important;
+}
+
+/* Number pill stays dark and consistent */
+.home-services-stack .home-service-button span,
+.home-services-stack .home-service-item:nth-child(1) .home-service-button span,
+.home-services-stack .home-service-item:nth-child(2) .home-service-button span,
+.home-services-stack .home-service-item:nth-child(4) .home-service-button span {
+  background: #101014 !important;
+  color: #fff !important;
+}
+
+/* Service title button */
+.home-services-stack .home-service-button {
+  color: #101014 !important;
+}
+
+.home-services-stack .home-service-button strong {
+  color: #101014 !important;
+  font-size: 25px !important;
+  font-weight: 500 !important;
+  line-height: 1.12 !important;
+}
+
+/* Right-side icon default */
+.home-services-stack .home-service-button em,
+.home-services-stack .home-service-item:nth-child(1) .home-service-button em,
+.home-services-stack .home-service-item:nth-child(2) .home-service-button em,
+.home-services-stack .home-service-item:nth-child(4) .home-service-button em {
+  position: relative;
+  border: 1px solid rgba(16, 16, 20, 0.08) !important;
+  background: #fff !important;
+  color: #101014 !important;
+  box-shadow: 0 10px 30px rgba(16, 16, 20, 0.06);
+}
+
+/* Brand gradient cross icon on hover/open */
+.home-services-stack .home-service-item:hover .home-service-button em,
+.home-services-stack .home-service-item.is-open .home-service-button em {
+  transform: rotate(45deg) !important;
+  border-color: transparent !important;
+  background:
+    radial-gradient(circle at 28% 24%, rgba(223, 255, 51, 0.95), transparent 32%),
+    linear-gradient(135deg, #315cff 0%, #8b5cf6 100%) !important;
+  color: #fff !important;
+  box-shadow: 0 16px 42px rgba(49, 92, 255, 0.28);
+}
+
+/* Expanded text clean dark */
+.home-services-stack .home-service-panel p,
+.home-services-stack .home-service-item:nth-child(1) .home-service-panel p,
+.home-services-stack .home-service-item:nth-child(2) .home-service-panel p,
+.home-services-stack .home-service-item:nth-child(4) .home-service-panel p {
+  color: rgba(16, 16, 20, 0.64) !important;
+}
+
+/* Tags clean white/light */
+.home-services-stack .home-tags span,
+.home-services-stack .home-service-item:nth-child(1) .home-tags span,
+.home-services-stack .home-service-item:nth-child(2) .home-tags span,
+.home-services-stack .home-service-item:nth-child(4) .home-tags span {
+  border-color: rgba(16, 16, 20, 0.08) !important;
+  background: #fff !important;
+  color: rgba(16, 16, 20, 0.64) !important;
+}
+
+/* Service action buttons spacing and clean styling */
+.home-service-actions {
+  margin-top: 28px !important;
+  padding-top: 22px;
+  border-top: 1px solid rgba(16, 16, 20, 0.07);
+}
+
+.home-service-page-button {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(223, 255, 51, 0.42), transparent 38%),
+    linear-gradient(135deg, #101014 0%, #315cff 100%) !important;
+  color: #fff !important;
+}
+
+.home-service-page-button:hover {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(223, 255, 51, 0.60), transparent 40%),
+    linear-gradient(135deg, #315cff 0%, #8b5cf6 100%) !important;
+}
+
+.home-service-secondary-link {
+  background: #fff !important;
+  color: rgba(16, 16, 20, 0.72) !important;
+  border-color: rgba(16, 16, 20, 0.10) !important;
+}
+
+@media (max-width: 720px) {
+  .home-services-stack .home-service-button strong {
+    font-size: 22px !important;
+  }
+}

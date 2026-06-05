@@ -1,0 +1,206 @@
+.book-page {
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(49, 92, 255, 0.055), transparent 30rem),
+    #fff;
+}
+
+.book-clean-hero {
+  padding-top: clamp(120px, 14vw, 180px);
+  padding-bottom: clamp(70px, 9vw, 130px);
+}
+
+.book-clean-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.42fr) minmax(0, 0.58fr);
+  gap: clamp(28px, 5vw, 76px);
+  align-items: start;
+}
+
+.book-clean-copy {
+  position: sticky;
+  top: 110px;
+  padding: clamp(26px, 4vw, 48px);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 16% 16%, rgba(223,255,51,0.84), transparent 95px),
+    radial-gradient(circle at 88% 12%, rgba(139,92,246,0.42), transparent 260px),
+    linear-gradient(135deg, #101014 0%, #315cff 62%, #8fa0ff 100%);
+  color: #fff;
+  overflow: hidden;
+  box-shadow: 0 34px 110px rgba(49, 92, 255, 0.20);
+}
+
+.book-clean-copy::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.26;
+}
+
+.book-clean-copy > * {
+  position: relative;
+  z-index: 1;
+}
+
+.book-kicker {
+  display: inline-flex;
+  margin-bottom: clamp(48px, 7vw, 90px);
+  padding: 10px 13px;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.72);
+  font-size: 12px;
+  font-weight: 500 !important;
+  letter-spacing: 0.1px;
+  text-transform: uppercase;
+  backdrop-filter: blur(18px);
+}
+
+.book-clean-copy h1 {
+  max-width: 620px;
+  margin: 0;
+  color: #fff !important;
+  font-size: clamp(48px, 6vw, 86px) !important;
+  font-weight: 600 !important;
+  line-height: 0.92;
+  letter-spacing: 0.1px;
+}
+
+.book-clean-copy p {
+  max-width: 520px;
+  margin: 24px 0 0;
+  color: rgba(255,255,255,0.72);
+  font-size: 15px !important;
+  line-height: 1.7;
+}
+
+.book-clean-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: clamp(34px, 5vw, 70px);
+}
+
+.book-clean-points span {
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.78);
+  font-size: 13px;
+  font-weight: 500 !important;
+  backdrop-filter: blur(18px);
+}
+
+.book-cal-card {
+  padding: clamp(14px, 2vw, 20px);
+  border: 1px solid rgba(16,16,20,0.08);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 90% 10%, rgba(49,92,255,0.08), transparent 190px),
+    linear-gradient(145deg, rgba(255,255,255,0.98), rgba(247,248,251,0.88));
+  box-shadow: 0 28px 100px rgba(16, 16, 20, 0.08);
+}
+
+.book-cal-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: center;
+  padding: 10px 10px 18px;
+}
+
+.book-cal-head span {
+  display: block;
+  color: rgba(49, 92, 255, 0.82);
+  font-size: 13px;
+  font-weight: 500 !important;
+}
+
+.book-cal-head strong {
+  display: block;
+  margin-top: 5px;
+  color: #101014;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.book-cal-head em {
+  display: inline-flex;
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: #101014;
+  color: #fff;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.book-cal-embed {
+  height: min(820px, 78vh);
+  min-height: 680px;
+  border: 1px solid rgba(16,16,20,0.08);
+  border-radius: 24px;
+  background: #fff;
+  overflow: hidden;
+}
+
+#my-cal-inline-30min-call {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+@media (max-width: 1100px) {
+  .book-clean-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .book-clean-copy {
+    position: relative;
+    top: auto;
+  }
+}
+
+@media (max-width: 720px) {
+  .book-clean-hero {
+    padding-top: 110px;
+  }
+
+  .book-clean-copy,
+  .book-cal-card {
+    border-radius: 26px;
+  }
+
+  .book-clean-copy h1 {
+    font-size: 38px !important;
+  }
+
+  .book-cal-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .book-cal-embed {
+    height: 760px;
+    min-height: 760px;
+    border-radius: 20px;
+  }
+}
+/* Book page h1 size update */
+.book-clean-copy h1 {
+  font-size: 65px !important;
+  line-height: 0.95 !important;
+}
+
+@media (max-width: 720px) {
+  .book-clean-copy h1 {
+    font-size: 38px !important;
+  }
+}

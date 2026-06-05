@@ -24,7 +24,10 @@ import "../styles/home-why-redesign.css";
 import "../styles/home-services-redesign.css";
 import "../styles/home-targeted-updates.css";
 import "../styles/home-testimonials-carousel.css";
+import "../styles/home-consultation-section-v2.css";
 
+import "../styles/home-services-clean-white.css";
+import "../styles/home-growth-system-redesign.css";
 const homeCaseScreenshotFor = (url: string) =>
   `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=1200`;
 
@@ -152,7 +155,7 @@ const homeSchema = {
             <p>Websites. SEO. CRO. Tracking. Automation. Built to work together.</p>
 
             <div class="inq-hero-actions">
-              <Button href="/contact/">Book a Consultation</Button>
+              <Button href="/book/">Book a Consultation</Button>
               <Button href="/services/" variant="outline">View Services</Button>
             </div>
           </div>
@@ -180,32 +183,57 @@ const homeSchema = {
       </div>
     </section>
 
-    <!-- 04. Growth System Cards -->
-    <section class="home-section-tight">
+        <!-- 04. Growth System Cards -->
+    <section class="home-growth-system-section">
       <div class="inq-container">
-        <div class="home-section-head">
-          <div data-reveal>
+        <div class="home-growth-system-layout">
+          <aside class="home-growth-system-intro" data-reveal data-parallax-card>
             <span class="home-kicker">GROWTH SYSTEM</span>
-            <h2>A website should do more than exist.</h2>
+
+            <h2>A website should do more than <span>exist.</span></h2>
+
+            <p>
+              Most businesses do not need another random redesign. They need a complete system that connects traffic, trust, conversion, data, and follow-up.
+            </p>
+
+            <div class="home-growth-system-metrics">
+              <div>
+                <strong>5</strong>
+                <span>Connected growth layers</span>
+              </div>
+
+              <div>
+                <strong>1</strong>
+                <span>Website built to perform</span>
+              </div>
+            </div>
+          </aside>
+
+          <div class="home-growth-system-board" data-reveal data-reveal-delay="120">
+            <div class="home-growth-orb" aria-hidden="true">
+              <strong>Growth System</strong>
+            </div>
+
+            <div class="home-growth-system-grid">
+              {growthCards.map((item, index) => (
+                <article class="home-growth-system-card" data-reveal data-reveal-delay={String(index * 70)}>
+                  <div class="home-growth-system-card-top">
+                    <span class="home-growth-system-number">{String(index + 1).padStart(2, "0")}</span>
+                    <span class="home-growth-system-icon">↗</span>
+                  </div>
+
+                  <div>
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
-
-          <p data-reveal data-reveal-delay="120">
-            Most businesses do not need another random redesign. They need a complete system that connects traffic, trust, conversion, data, and follow-up.
-          </p>
-        </div>
-
-        <div class="home-framework-grid" data-reveal>
-          {growthCards.map((item) => (
-            <article>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </article>
-          ))}
         </div>
       </div>
     </section>
-
-            <!-- 05. Services Accordion -->
+<!-- 05. Services Accordion -->
     <section class="home-services-redesign-section">
       <div class="inq-container">
         <div class="home-services-redesign">
@@ -252,7 +280,7 @@ const homeSchema = {
 
                     <div class="home-service-actions">
                       <a class="home-service-page-button" href={service.href}>View Service Page ↗</a>
-                      <a class="home-service-secondary-link" href="/contact/">Book Consultation</a>
+                      <a class="home-service-secondary-link" href="/book/">Book Consultation</a>
                     </div>
                   </div>
                 </div>
@@ -455,7 +483,7 @@ const homeSchema = {
             </div>
 
             <div class="inq-hero-actions">
-              <Button href="/contact/">Book a Consultation</Button>
+              <Button href="/book/">Book a Consultation</Button>
             </div>
           </div>
         </div>
@@ -648,44 +676,58 @@ const homeSchema = {
         </div>
       </div>
     </section>
-
-        <!-- 14. Consultation CTA -->
-    <section class="home-consultation-section">
+    <!-- 14. Consultation CTA -->
+    <section class="home-booking-cta-section">
       <div class="inq-container">
-        <div class="home-consultation-card" data-reveal>
-          <div class="home-consultation-content">
-            <div class="home-consultation-label">BOOK A CONSULTATION</div>
+        <div class="home-booking-cta-card" data-reveal>
+          <div class="home-booking-main">
+            <div>
+              <div class="home-booking-eyebrow">Book a consultation</div>
 
-            <h2>Let’s find the clearest path to make your website <span>attract, convert, and grow.</span></h2>
-          </div>
-
-          <div class="home-consultation-side">
-            <p>
-              Book a consultation meeting to review your website, business goals, conversion gaps, SEO opportunities, tracking needs, and the fastest growth system we can build for you.
-            </p>
-
-            <div class="home-consultation-actions">
-              <a class="home-consultation-primary" href="/contact/">Book a Consultation ↗</a>
-              <a class="home-consultation-secondary" href="/case-studies/">View Case Studies</a>
+              <h2>
+                Let’s turn your website into a system that
+                <span>books more qualified conversations.</span>
+              </h2>
             </div>
 
-            <div class="home-consultation-points">
-              <div class="home-consultation-point">
+            <div class="home-booking-bottom">
+
+              <div class="home-booking-actions">
+                <a class="home-booking-primary" href="/book/">Book a Consultation ↗</a>
+                <a class="home-booking-secondary" href="/case-studies/">View Case Studies</a>
+              </div>
+            </div>
+          </div>
+
+          <aside class="home-booking-panel">
+            <div class="home-booking-panel-top">
+              <div class="home-booking-calendar-icon">30</div>
+
+              <div>
+                <h3>One focused call. Clear direction before you spend.</h3>
+                <p>
+                  We’ll identify what is blocking trust, traffic, leads, and measurable growth.
+                </p>
+              </div>
+            </div>
+
+            <div class="home-booking-points">
+              <div class="home-booking-point">
                 <span>✓</span>
                 Website clarity and conversion review
               </div>
 
-              <div class="home-consultation-point">
+              <div class="home-booking-point">
                 <span>✓</span>
                 SEO, tracking, and growth opportunity direction
               </div>
 
-              <div class="home-consultation-point">
+              <div class="home-booking-point">
                 <span>✓</span>
                 Practical next-step roadmap for your business
               </div>
             </div>
-          </div>
+          </aside>
         </div>
       </div>
     </section>
