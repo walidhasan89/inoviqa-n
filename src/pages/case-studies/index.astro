@@ -1,0 +1,228 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Button from "../../components/common/Button.astro";
+import "../../styles/case-studies.css";
+
+const workLinks = [
+  { title: "My New Warehouse", url: "https://mynewwarehouse.com/", category: "Logistics / Fulfillment", summary: "A business website experience focused on clarity, service communication, and lead-generation flow." },
+  { title: "Fulfill My Orders", url: "https://fulfillmyorders.com/", category: "Logistics / Ecommerce Fulfillment", summary: "A fulfillment-focused digital presence built around trust, service explanation, and conversion paths." },
+  { title: "Redesign Fitout", url: "https://redesignfitout.com/", category: "Interior / Fitout", summary: "A service business website structure focused on credibility, project clarity, and inquiry generation." },
+  { title: "Enginious", url: "https://enginious.ae/", category: "Engineering / Business Website", summary: "A professional website experience built around service positioning, trust, and clear business communication." },
+  { title: "Google Ads", url: "https://ads.google.com/", category: "Advertising / Growth Channel", summary: "A paid acquisition channel connected to campaign traffic, conversion tracking, and measurable lead generation." },
+  { title: "Kayak Backpack", url: "https://kayakbackpack.com/", category: "Ecommerce / Product Brand", summary: "An ecommerce product experience focused on product clarity, trust, speed, and conversion opportunities." },
+  { title: "Soniya Behrens", url: "https://soniyabehrens.com/", category: "Personal Brand / Portfolio", summary: "A personal brand website focused on story, credibility, positioning, and simple navigation." },
+  { title: "Invictuss", url: "https://invictuss.io/", category: "SaaS / Technology", summary: "A technology website experience focused on positioning, product clarity, and user journey structure." },
+  { title: "Jointalently", url: "https://jointalently.com/", category: "Recruitment / HR Platform", summary: "A recruitment platform website focused on clear audience messaging, trust, and conversion flow." },
+  { title: "BTR Services Inc", url: "https://www.btrservicesinc.com/", category: "B2B Service Business", summary: "A business service website focused on professionalism, service explanation, and inquiry readiness." },
+  { title: "LIX Health", url: "https://lix.health/", category: "Health / Wellness", summary: "A health-focused digital experience shaped around clarity, trust, credibility, and user confidence." },
+  { title: "Matar Bin Fraih", url: "https://matarbinfraih.com/", category: "Corporate / Personal Brand", summary: "A professional brand website focused on credibility, identity, and clean digital presentation." },
+  { title: "Designs by Platinum", url: "https://designsbyplatinum.com/", category: "Design / Creative Business", summary: "A creative business website focused on visual presentation, trust, and service communication." },
+  { title: "The Cleaning Mavens", url: "https://thecleaningmavens.com/", category: "Local Service / Cleaning", summary: "A local cleaning service website focused on lead generation, trust signals, and service clarity." },
+  { title: "Silk Waters Windows & Eaves", url: "https://silkwaterswindowsandeaves.com/", category: "Local Service / Exterior Cleaning", summary: "A local service website focused on service clarity, local trust, and conversion opportunities." },
+  { title: "Devoid Moda", url: "https://devoidmoda.com.bd/", category: "Fashion / Ecommerce", summary: "A fashion ecommerce experience focused on product discovery, brand presentation, and purchase flow." },
+  { title: "ReplyChief", url: "https://replychief.com/", category: "Product / Chrome Extension", summary: "A product website for improving reply workflows, productivity, and communication speed." },
+  { title: "AdminPalette", url: "https://adminpalette.com/", category: "Shopify / Extension", summary: "A Shopify product website focused on admin workflow enhancement and product communication." },
+  { title: "RFQ AutoPilot", url: "https://rfqautopilot.com/", category: "Automation / Procurement", summary: "A product website for RFQ automation, procurement workflow clarity, and operational efficiency." },
+  { title: "AuditPilot", url: "https://siteauditpilot.com/", category: "Website Audit Product", summary: "A website audit product experience focused on SEO, UX, conversion gaps, and growth opportunities." },
+  { title: "Little Red Pepper", url: "https://littleredpepper.co.uk/", category: "Food / Restaurant", summary: "A restaurant website experience focused on brand feel, local discovery, and user-friendly navigation." },
+  { title: "Curious Tom", url: "https://curioustom.co.za/", category: "Creative / Business Website", summary: "A creative website focused on brand personality, clarity, visual flow, and conversion-ready structure." },
+  { title: "Deus Boxing", url: "https://deusboxingg.myshopify.com/", category: "Shopify / Sports Brand", summary: "A Shopify storefront experience focused on product presentation and ecommerce usability." },
+  { title: "Walid Hasan", url: "https://walidhasan.com/", category: "Personal Brand", summary: "A personal brand website focused on authority, positioning, services, and digital credibility." },
+  { title: "BMC Live Ent", url: "https://bmcliveent.com/", category: "Entertainment / Events", summary: "An entertainment website focused on event presentation, audience engagement, and clear navigation." },
+  { title: "Dexer", url: "https://dexer.xyz/", category: "Technology / Web Platform", summary: "A technology platform website focused on modern presentation, clarity, and product experience." },
+  { title: "The BYOB Firm", url: "https://thebyobfirm.com/", category: "Consulting / Business", summary: "A consulting website focused on authority, business positioning, and inquiry generation." },
+  { title: "The Dog Ranch", url: "https://thedogranch.co.nz/", category: "Pet Service / Local Business", summary: "A local pet service website focused on trust, services, customer confidence, and conversion flow." },
+  { title: "Leadership Compass Online", url: "https://leadershipcompassonline.com/", category: "Coaching / Leadership", summary: "A leadership-focused website shaped around credibility, offer clarity, and professional trust." },
+  { title: "Conceptual Architecture and Designs", url: "https://conceptualarchitectureanddesigns.com/", category: "Architecture / Design", summary: "An architecture and design website focused on portfolio presentation, trust, and service clarity." },
+  { title: "Leds N Baggs", url: "https://ledsnbaggs.com/", category: "Ecommerce / Retail", summary: "An ecommerce retail experience focused on product browsing, brand clarity, and shopping flow." },
+  { title: "Pason Global", url: "https://pasonglobal.com/", category: "Business / Corporate", summary: "A corporate website focused on business positioning, clear communication, and credibility." },
+  { title: "CBT Fit Training", url: "https://cbtfittraining.com/", category: "Fitness / Coaching", summary: "A fitness coaching website focused on trust, program clarity, and lead-generation structure." },
+];
+
+const selectedUrls = [
+  "https://ledsnbaggs.com/",
+  "https://pasonglobal.com/",
+  "https://jointalently.com/",
+  "https://fulfillmyorders.com/",
+];
+
+const featuredProjects = selectedUrls
+  .map((url) => workLinks.find((item) => item.url === url))
+  .filter(Boolean);
+
+const screenshotFor = (url: string) =>
+  `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=1200`;
+
+const hostFor = (url: string) => {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
+};
+
+const improvementsFor = (category: string) => {
+  if (category.toLowerCase().includes("ecommerce") || category.toLowerCase().includes("shopify")) {
+    return ["Product clarity", "Shopping flow", "Speed and UX", "Conversion path"];
+  }
+
+  if (category.toLowerCase().includes("local") || category.toLowerCase().includes("cleaning") || category.toLowerCase().includes("pet")) {
+    return ["Local trust", "Service clarity", "CTA structure", "Lead capture"];
+  }
+
+  if (category.toLowerCase().includes("tracking") || category.toLowerCase().includes("performance") || category.toLowerCase().includes("seo")) {
+    return ["Measurement clarity", "Technical foundation", "Search context", "Growth insight"];
+  }
+
+  if (category.toLowerCase().includes("product") || category.toLowerCase().includes("saas") || category.toLowerCase().includes("extension") || category.toLowerCase().includes("automation")) {
+    return ["Product positioning", "Feature clarity", "User journey", "Scalable system"];
+  }
+
+  return ["Message clarity", "Trust signals", "UX flow", "Inquiry readiness"];
+};
+---
+
+<BaseLayout
+  title="Case Studies — Website Growth Systems, SEO, CRO, Tracking & Automation | Inoviqa"
+  description="Explore completed Inoviqa projects with website previews, improvement focus, and live project links across websites, SEO, CRO, tracking, automation, ecommerce, SaaS, and local businesses."
+  path="/case-studies/"
+>
+  <main class="case-page">
+    <section class="case-hero">
+      <div class="inq-container">
+        <div class="case-hero-grid">
+          <div data-reveal>
+            <span class="case-kicker">PROJECTS — CASE STUDIES</span>
+            <h1>Completed growth work with real website previews, strategy focus, and improvement direction.</h1>
+          </div>
+
+          <div class="case-hero-copy" data-reveal data-reveal-delay="120">
+            <p>
+              A visual portfolio of websites, products, tools, and growth systems connected to Inoviqa work across web design, SEO, CRO, tracking, automation, ecommerce, SaaS, and local business growth.
+            </p>
+
+            <div class="case-chip-row">
+              <span>Websites</span>
+              <span>SEO</span>
+              <span>CRO</span>
+              <span>Tracking</span>
+              <span>Automation</span>
+              <span>Products</span>
+            </div>
+
+            <div class="inq-hero-actions">
+              <Button href="/contact/">Book a Consultation</Button>
+              <Button href="/services/" variant="outline">View Services</Button>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-brand-panel" data-reveal data-reveal-delay="180">
+          <strong>Case Studies</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="inq-container">
+        <div class="case-section-head" data-reveal>
+          <div>
+            <span class="case-kicker">FEATURED — 01</span>
+            <h2>Selected <span>Growth Work</span></h2>
+          </div>
+
+          <p>
+            Featured examples with live website snapshots, project context, and improvement areas behind the work.
+          </p>
+        </div>
+
+        <div class="case-featured-grid">
+          {featuredProjects.map((item, index) => (
+            item && (
+              <a class="case-featured-card" href={item.url} target="_blank" rel="noopener noreferrer" data-reveal data-reveal-delay={String(index * 70)}>
+                <div class={`case-visual case-visual-${index + 1}`}>
+                  <img src={screenshotFor(item.url)} alt={`${item.title} website snapshot`} loading="lazy" decoding="async" />
+                  <span>{hostFor(item.url)}</span>
+                </div>
+
+                <div class="case-featured-info">
+                  <span>{item.category}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.summary}</p>
+
+                  <div class="case-improvement-list">
+                    {improvementsFor(item.category).map((point) => <em>{point}</em>)}
+                  </div>
+
+                  <strong>Visit Website ↗</strong>
+                </div>
+              </a>
+            )
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-work-index">
+      <div class="inq-container">
+        <div class="case-section-head" data-reveal>
+          <div>
+            <span class="case-kicker">WORK INDEX — 02</span>
+            <h2>Completed <span>Project Library</span></h2>
+          </div>
+
+          <p>
+            Each project includes a live website preview, project category, improvement focus, and direct link.
+          </p>
+        </div>
+
+        <div class="case-library">
+          {workLinks.map((item, index) => (
+            <article class="case-project-row" data-reveal data-reveal-delay={String((index % 6) * 45)}>
+              <a class="case-project-image" href={item.url} target="_blank" rel="noopener noreferrer">
+                <img src={screenshotFor(item.url)} alt={`${item.title} website snapshot`} loading="lazy" decoding="async" />
+                <span>{String(index + 1).padStart(2, "0")}</span>
+              </a>
+
+              <div class="case-project-body">
+                <div class="case-project-top">
+                  <span>{item.category}</span>
+                  <em>{hostFor(item.url)}</em>
+                </div>
+
+                <h3>{item.title}</h3>
+                <p>{item.summary}</p>
+
+                <div class="case-improvement-list">
+                  {improvementsFor(item.category).map((point) => <span>{point}</span>)}
+                </div>
+
+                <a class="case-visit-link" href={item.url} target="_blank" rel="noopener noreferrer">View Live Website ↗</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="case-dark-section">
+      <div class="inq-container">
+        <div class="case-dark-card" data-reveal>
+          <div>
+            <span class="case-kicker">HAVE A PROJECT IN MIND?</span>
+            <h2>Want your website to become the next measurable growth system?</h2>
+            <p>
+              Work with Inoviqa to improve website clarity, SEO, CRO, analytics tracking, automation, and lead generation systems.
+            </p>
+          </div>
+
+          <div class="inq-hero-actions">
+            <Button href="/contact/">Book a Consultation</Button>
+            <Button href="/services/" variant="outline">View Services</Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+

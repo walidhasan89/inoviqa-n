@@ -1,0 +1,387 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Button from "../../components/common/Button.astro";
+import { productDetailPages } from "../../data/product-details";
+
+import "../../styles/product-detail.css";
+
+export function getStaticPaths() {
+  return productDetailPages.map((product) => ({
+    params: {
+      slug: product.slug,
+    },
+    props: {
+      product,
+    },
+  }));
+}
+
+const { product } = Astro.props;
+
+const relatedProducts = productDetailPages
+  .filter((item) => item.slug !== product.slug)
+  .slice(0, 3);
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: product.name,
+  description: product.seoDescription,
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Chrome",
+  url: product.externalHref,
+  creator: {
+    "@type": "Organization",
+    name: "Inoviqa LLC",
+    url: "https://inoviqa.com",
+  },
+};
+---
+
+<BaseLayout
+  title={product.seoTitle}
+  description={product.seoDescription}
+  path={`/products/${product.slug}/`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+
+  <div class="product-detail-page">
+    <section class="product-detail-hero">
+      <div class="inq-container">
+        <div class="product-detail-hero-grid">
+          <div data-reveal>
+            <span class="product-detail-number">{product.number}</span>
+            <span class="inq-kicker">{product.eyebrow}</span>
+
+            <h1 class="product-detail-title">{product.name}</h1>
+          </div>
+
+          <div class="product-detail-copy" data-reveal data-reveal-delay="140">
+            <span class="product-detail-status">{product.status}</span>
+            <p class="inq-lead">{product.hero}</p>
+
+            <div class="inq-hero-actions">
+              <Button href={product.externalHref} external>Visit Product Website</Button>
+              <Button href="/products/" variant="outline">All Products</Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-detail-intro">
+      <div class="inq-container">
+        <p class="product-detail-statement" data-reveal>{product.summary}</p>
+      </div>
+    </section>
+
+    <section class="inq-section-tight">
+      <div class="inq-container">
+        <div class="product-overview-grid">
+          <article class="inq-card product-overview-card" data-reveal data-parallax-card>
+            <div class="inq-card-content">
+              <span class="inq-kicker">What it does</span>
+              <h2>Product purpose</h2>
+              <p>{product.whatItDoes}</p>
+            </div>
+          </article>
+
+          <article
+            class="inq-card product-overview-card"
+            data-reveal
+            data-reveal-delay="120"
+            data-parallax-card
+          >
+            <div class="inq-card-content">
+              <span class="inq-kicker">Who it is for</span>
+              <h2>Built for focused users</h2>
+              <div class="product-pill-list">
+                {product.audience.map((item) => <span>{item}</span>)}
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section">
+      <div class="inq-container">
+        <div class="product-detail-section-head">
+          <div data-reveal>
+            <span class="inq-kicker">Pain points</span>
+            <h2 class="product-detail-section-title">Problems this product helps solve</h2>
+          </div>
+
+          <p class="product-detail-section-copy" data-reveal data-reveal-delay="120">
+            Every Inoviqa product is built from a real workflow problem: wasted time, scattered
+            data, slow decisions, weak follow-up, or repeated manual work.
+          </p>
+        </div>
+
+        <div class="product-feature-grid">
+          {
+            product.painPoints.map((item, index) => (
+              <article class="product-feature-card" data-reveal data-reveal-delay={String(index * 55)}>
+                <strong>{String(index + 1).padStart(2, "0")}</strong>
+                <span>{item}</span>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section-tight">
+      <div class="inq-container">
+        <div class="product-detail-section-head">
+          <div data-reveal>
+            <span class="inq-kicker">Features</span>
+            <h2 class="product-detail-section-title">Key product capabilities</h2>
+          </div>
+
+          <p class="product-detail-section-copy" data-reveal data-reveal-delay="120">
+            The feature set is shaped around practical business use — helping users move faster,
+            organize work better, and create more useful outputs.
+          </p>
+        </div>
+
+        <div class="product-feature-grid">
+          {
+            product.features.map((item, index) => (
+              <article class="product-feature-card" data-reveal data-reveal-delay={String(index * 55)}>
+                <strong>{String(index + 1).padStart(2, "0")}</strong>
+                <span>{item}</span>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section-tight">
+      <div class="inq-container">
+        <div class="product-detail-section-head">
+          <div data-reveal>
+            <span class="inq-kicker">Workflow</span>
+            <h2 class="product-detail-section-title">How the product fits into daily work</h2>
+          </div>
+
+          <p class="product-detail-section-copy" data-reveal data-reveal-delay="120">
+            The workflow keeps the product simple: start from the user’s existing environment,
+            reduce manual steps, and help them act faster.
+          </p>
+        </div>
+
+        <div class="product-workflow-wrap">
+          {
+            product.workflow.map((item, index) => (
+              <article class="product-workflow-item" data-reveal data-reveal-delay={String(index * 70)}>
+                <span class="product-workflow-number">{String(index + 1).padStart(2, "0")}</span>
+                <h3>{item}</h3>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section-tight">
+      <div class="inq-container">
+        <div class="product-uses-card" data-reveal>
+          <div>
+            <span class="inq-kicker">Benefits & use cases</span>
+            <h2>Where {product.name} creates value</h2>
+          </div>
+
+          <div>
+            <div class="product-uses-list">
+              {product.benefits.map((item) => <span>{item}</span>)}
+            </div>
+
+            <div class="product-pill-list">
+              {product.useCases.map((item) => <span>{item}</span>)}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section">
+      <div class="inq-container">
+        <div class="product-detail-section-head">
+          <div data-reveal>
+            <span class="inq-kicker">Related products</span>
+            <h2 class="product-detail-section-title">More tools built by Inoviqa</h2>
+          </div>
+
+          <p class="product-detail-section-copy" data-reveal data-reveal-delay="120">
+            Inoviqa products connect around the same idea: build practical systems that save time,
+            improve workflows, and create business growth assets.
+          </p>
+        </div>
+
+        <div class="product-related-grid">
+          {
+            relatedProducts.map((item, index) => (
+              <article
+                class="inq-card product-related-card"
+                data-reveal
+                data-reveal-delay={String(index * 90)}
+                data-parallax-card
+              >
+                <div class="inq-card-content">
+                  <span class="inq-kicker">{item.eyebrow}</span>
+                  <h3>{item.name}</h3>
+                  <p class="inq-body">{item.summary}</p>
+                  <a
+                    class="product-related-link"
+                    href={`/products/${item.slug}/`}
+                    aria-label={`View ${item.name}`}
+                  >
+                    →
+                  </a>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section-tight">
+      <div class="inq-container">
+        <div class="product-cta-card" data-reveal>
+          <div>
+            <span class="footer-kicker">Product by Inoviqa</span>
+
+            <h2>Explore {product.name} on its product website.</h2>
+
+            <p>
+              Visit the official product website to learn more, check availability, review product
+              details, and follow the next step for installation or access.
+            </p>
+
+            <div class="inq-hero-actions product-dark-actions">
+              <Button href={product.externalHref} external>Visit Product Website</Button>
+              <Button href="/contact/" variant="outline">Build Something Similar</Button>
+            </div>
+          </div>
+
+          <div class="product-cta-visual" aria-label="Product value system">
+            <div class="product-cta-row">
+              <span>Problem</span>
+              <span>Identify</span>
+            </div>
+            <div class="product-cta-row">
+              <span>Workflow</span>
+              <span>Simplify</span>
+            </div>
+            <div class="product-cta-row">
+              <span>Action</span>
+              <span>Speed up</span>
+            </div>
+            <div class="product-cta-row">
+              <span>Output</span>
+              <span>Improve</span>
+            </div>
+            <div class="product-cta-row">
+              <span>System</span>
+              <span>Scale</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section" id="faq">
+      <div class="inq-container">
+        <div class="product-detail-section-head">
+          <div data-reveal>
+            <span class="inq-kicker">FAQ</span>
+            <h2 class="product-detail-section-title">Questions about {product.name}?</h2>
+          </div>
+
+          <p class="product-detail-section-copy" data-reveal data-reveal-delay="120">
+            Quick answers about what the product does, who it is for, and how it fits into the
+            Inoviqa product ecosystem.
+          </p>
+        </div>
+
+        <div class="product-faq-wrap" data-product-faq>
+          {
+            product.faqs.map((item, index) => (
+              <article class:list={["product-faq-item", { "is-open": index === 0 }]}>
+                <button
+                  class="product-faq-button"
+                  type="button"
+                  aria-expanded={index === 0 ? "true" : "false"}
+                  data-product-faq-button
+                >
+                  <span>{item.question}</span>
+                  <span aria-hidden="true">+</span>
+                </button>
+
+                <div class="product-faq-panel" data-product-faq-panel>
+                  <p>{item.answer}</p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const setupProductFaq = () => {
+      const root = document.querySelector("[data-product-faq]");
+      if (!root) return;
+
+      const items = Array.from(root.querySelectorAll(".product-faq-item"));
+
+      const setPanelHeights = () => {
+        items.forEach((item) => {
+          const panel = item.querySelector("[data-product-faq-panel]");
+          if (!panel) return;
+
+          if (item.classList.contains("is-open")) {
+            panel.style.maxHeight = `${panel.scrollHeight}px`;
+          } else {
+            panel.style.maxHeight = "0px";
+          }
+        });
+      };
+
+      items.forEach((item) => {
+        const button = item.querySelector("[data-product-faq-button]");
+
+        button?.addEventListener("click", () => {
+          const isOpen = item.classList.contains("is-open");
+
+          items.forEach((currentItem) => {
+            currentItem.classList.remove("is-open");
+            currentItem
+              .querySelector("[data-product-faq-button]")
+              ?.setAttribute("aria-expanded", "false");
+          });
+
+          if (!isOpen) {
+            item.classList.add("is-open");
+            button.setAttribute("aria-expanded", "true");
+          }
+
+          setPanelHeights();
+        });
+      });
+
+      setPanelHeights();
+      window.addEventListener("resize", setPanelHeights, { passive: true });
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", setupProductFaq);
+    } else {
+      setupProductFaq();
+    }
+  </script>
+</BaseLayout>

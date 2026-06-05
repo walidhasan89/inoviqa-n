@@ -1,0 +1,33 @@
+---
+interface Props {
+  href?: string;
+  variant?: "primary" | "dark" | "outline";
+  external?: boolean;
+  magnetic?: boolean;
+  class?: string;
+}
+
+const {
+  href = "#",
+  variant = "primary",
+  external = false,
+  magnetic = true,
+  class: className = "",
+} = Astro.props;
+
+const classes = ["inq-btn", `inq-btn-${variant}`, className].filter(Boolean).join(" ");
+const target = external ? "_blank" : undefined;
+const rel = external ? "noopener noreferrer" : undefined;
+---
+
+<a
+  href={href}
+  class={classes}
+  target={target}
+  rel={rel}
+  data-magnetic={magnetic ? true : undefined}
+>
+  <slot />
+  <span aria-hidden="true">→</span>
+</a>
+

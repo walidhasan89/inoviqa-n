@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Button from "../../../components/common/Button.astro";
+
+import "../../../styles/contact.css";
+---
+
+<BaseLayout
+  title="Thank You — Inoviqa"
+  description="Thank you for contacting Inoviqa. Your project inquiry has been received."
+  path="/contact/thank-you/"
+  noIndex={true}
+>
+  <section class="contact-hero">
+    <div class="inq-container">
+      <div class="thank-you-card" data-reveal>
+        <div>
+          <span class="footer-kicker">Message received</span>
+
+          <h1>Thank you for contacting Inoviqa.</h1>
+
+          <p>
+            Your project inquiry has been received. We will review your website, goals, and context
+            through a growth-systems lens.
+          </p>
+
+          <div class="inq-hero-actions thank-you-actions">
+            <Button href="/" variant="primary">Back to Home</Button>
+            <Button href="/services/" variant="outline">View Services</Button>
+          </div>
+        </div>
+
+        <div class="thank-you-visual" aria-label="Next steps">
+          <div class="thank-you-row">
+            <span>Inquiry</span>
+            <span>Received</span>
+          </div>
+          <div class="thank-you-row">
+            <span>Website</span>
+            <span>Review</span>
+          </div>
+          <div class="thank-you-row">
+            <span>Goal</span>
+            <span>Clarify</span>
+          </div>
+          <div class="thank-you-row">
+            <span>Next step</span>
+            <span>Reply</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+

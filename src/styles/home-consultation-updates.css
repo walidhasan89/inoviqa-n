@@ -1,0 +1,234 @@
+﻿/* ==================================================
+   HOME CONSULTATION CTA + WORK ICON HOVER
+================================================== */
+
+/* Our Work card icon hover */
+.home-featured-cases .home-work-info > span {
+  position: relative;
+  display: grid !important;
+  place-items: center;
+  width: 48px !important;
+  height: 48px !important;
+  border: 1px solid rgba(16,16,20,0.08);
+  border-radius: 999px;
+  background: #f7f8fb;
+  color: #101014;
+  font-size: 20px;
+  transition:
+    transform 380ms cubic-bezier(.22,1,.36,1),
+    background 380ms cubic-bezier(.22,1,.36,1),
+    color 380ms cubic-bezier(.22,1,.36,1),
+    border-color 380ms cubic-bezier(.22,1,.36,1),
+    box-shadow 380ms cubic-bezier(.22,1,.36,1);
+}
+
+.home-featured-cases .home-work-card:hover .home-work-info > span {
+  transform: translateY(-4px) rotate(45deg);
+  background: #315cff;
+  color: #fff;
+  border-color: rgba(49,92,255,0.35);
+  box-shadow: 0 18px 42px rgba(49,92,255,0.28);
+}
+
+/* New consultation CTA */
+.home-consultation-section {
+  padding-block: clamp(70px, 9vw, 135px);
+  background:
+    radial-gradient(circle at 12% 10%, rgba(49, 92, 255, 0.055), transparent 30rem),
+    #fff;
+}
+
+.home-consultation-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(300px, 0.42fr);
+  gap: clamp(34px, 6vw, 92px);
+  align-items: end;
+  min-height: clamp(520px, 48vw, 720px);
+  padding: clamp(28px, 5vw, 68px);
+  border-radius: 38px;
+  background:
+    radial-gradient(circle at 14% 16%, rgba(223,255,51,0.82), transparent 105px),
+    radial-gradient(circle at 86% 10%, rgba(139,92,246,0.45), transparent 300px),
+    linear-gradient(135deg, #101014 0%, #263bff 58%, #8fa0ff 100%);
+  color: #fff;
+  overflow: hidden;
+  box-shadow: 0 42px 140px rgba(49, 92, 255, 0.24);
+}
+
+.home-consultation-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 34px 34px;
+  opacity: 0.26;
+}
+
+.home-consultation-card::after {
+  content: "";
+  position: absolute;
+  right: clamp(26px, 7vw, 110px);
+  top: clamp(28px, 6vw, 95px);
+  width: clamp(130px, 18vw, 260px);
+  height: clamp(130px, 18vw, 260px);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.24), transparent 35%),
+    rgba(255,255,255,0.08);
+  backdrop-filter: blur(18px);
+}
+
+.home-consultation-content,
+.home-consultation-side {
+  position: relative;
+  z-index: 1;
+}
+
+.home-consultation-label {
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: clamp(42px, 8vw, 110px);
+  padding: 10px 13px;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.72);
+  font-size: 12px;
+  font-weight: 600 !important;
+  letter-spacing: 0.1px;
+  text-transform: uppercase;
+  backdrop-filter: blur(18px);
+}
+
+.home-consultation-card h2 {
+  max-width: 980px;
+  margin: 0;
+  color: #fff !important;
+  font-size: clamp(48px, 7vw, 102px) !important;
+  font-weight: 600 !important;
+  line-height: 0.9;
+  letter-spacing: 0.1px;
+}
+
+.home-consultation-card h2 span {
+  display: block;
+  background: linear-gradient(105deg, #ffffff, #dfff33 58%, #ffffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+.home-consultation-card p {
+  max-width: 520px;
+  margin: 0;
+  color: rgba(255,255,255,0.72);
+  font-size: 15px !important;
+  line-height: 1.7;
+}
+
+.home-consultation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.home-consultation-primary,
+.home-consultation-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 14px 21px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600 !important;
+  transition:
+    transform 350ms cubic-bezier(.22,1,.36,1),
+    background 350ms cubic-bezier(.22,1,.36,1),
+    color 350ms cubic-bezier(.22,1,.36,1);
+}
+
+.home-consultation-primary {
+  background: #fff;
+  color: #101014;
+}
+
+.home-consultation-secondary {
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.10);
+  color: #fff;
+}
+
+.home-consultation-primary:hover,
+.home-consultation-secondary:hover {
+  transform: translateY(-3px);
+}
+
+.home-consultation-secondary:hover {
+  background: rgba(255,255,255,0.18);
+}
+
+.home-consultation-points {
+  display: grid;
+  gap: 10px;
+  margin-top: clamp(34px, 5vw, 70px);
+}
+
+.home-consultation-point {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 18px;
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.78);
+  font-size: 14px;
+  backdrop-filter: blur(18px);
+}
+
+.home-consultation-point span {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: #dfff33;
+  color: #101014;
+  font-size: 13px;
+}
+
+@media (max-width: 1000px) {
+  .home-consultation-card {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .home-consultation-label {
+    margin-bottom: 70px;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-consultation-card {
+    border-radius: 26px;
+  }
+
+  .home-consultation-card h2 {
+    font-size: 38px !important;
+  }
+
+  .home-consultation-actions {
+    flex-direction: column;
+  }
+
+  .home-consultation-primary,
+  .home-consultation-secondary {
+    width: 100%;
+  }
+}

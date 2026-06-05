@@ -1,0 +1,366 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import {
+  contactBudgetRanges,
+  contactFaqs,
+  contactFocusAreas,
+  contactProjectTypes,
+} from "../../data/contact";
+
+import "../../styles/contact.css";
+
+const contactSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: "Contact Inoviqa",
+  description:
+    "Contact Inoviqa LLC to discuss website growth systems, website redesign, SEO, CRO, analytics, lead generation, automation, and product builds.",
+  url: "https://inoviqa.com/contact/",
+  mainEntity: {
+    "@type": "Organization",
+    name: "Inoviqa LLC",
+    email: "hello@inoviqa.com",
+    url: "https://inoviqa.com",
+  },
+};
+---
+
+<BaseLayout
+  title="Contact — Start Your Website Growth System"
+  description="Contact Inoviqa to discuss website growth systems, website redesign, SEO, CRO, analytics, lead generation, automation, and product builds."
+  path="/contact/"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(contactSchema)} />
+
+  <div class="contact-page">
+    <section class="contact-hero">
+      <div class="inq-container">
+        <div class="contact-hero-grid">
+          <div data-reveal>
+            <span class="inq-kicker">Contact Inoviqa</span>
+
+            <h1 class="contact-hero-title">
+              Start your <span class="inq-gradient-text">growth system</span>.
+            </h1>
+          </div>
+
+          <div class="contact-hero-copy" data-reveal data-reveal-delay="140">
+            <p class="inq-lead">
+              Tell us what you are building, fixing, or trying to improve. Inoviqa will review your
+              website, goals, and opportunity from a growth-systems perspective.
+            </p>
+
+            <div class="contact-hero-pills" aria-label="Contact topics">
+              <span>Website redesign</span>
+              <span>SEO</span>
+              <span>CRO</span>
+              <span>Tracking</span>
+              <span>Automation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section-tight">
+      <div class="inq-container">
+        <div class="contact-layout">
+          <aside class="contact-sidebar">
+            <div class="contact-info-card" data-reveal>
+              <span class="inq-kicker">Direct email</span>
+              <h2>Prefer email?</h2>
+              <p>
+                Send project details, website URL, goals, and any context that helps us understand
+                what needs to improve.
+              </p>
+
+              <a class="contact-email-link" href="mailto:hello@inoviqa.com">
+                hello@inoviqa.com
+              </a>
+
+              <div class="contact-meta-list">
+                <div class="contact-meta-row">
+                  <span>Response</span>
+                  <span>Review first</span>
+                </div>
+                <div class="contact-meta-row">
+                  <span>Focus</span>
+                  <span>Growth systems</span>
+                </div>
+                <div class="contact-meta-row">
+                  <span>Company</span>
+                  <span>Inoviqa LLC</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-focus-card" data-reveal data-reveal-delay="120">
+              <span class="inq-kicker">Focus areas</span>
+              <h2>What we can discuss</h2>
+
+              <div class="contact-focus-list">
+                {contactFocusAreas.map((item) => <span>{item}</span>)}
+              </div>
+            </div>
+          </aside>
+
+          <div class="contact-form-card" data-reveal data-reveal-delay="180">
+            <div class="contact-form-head">
+              <div>
+                <span class="inq-kicker">Project inquiry</span>
+                <h2>Tell us about the project</h2>
+              </div>
+
+              <p>
+                This form is connected to a Hostinger-compatible PHP handler after deployment.
+              </p>
+            </div>
+
+            <div
+              class="contact-alert contact-alert-error"
+              data-contact-error
+              role="alert"
+              aria-live="polite"
+            >
+              Something went wrong. Please check required fields or email hello@inoviqa.com directly.
+            </div>
+
+            <form class="contact-form" action="/contact.php" method="POST">
+              <input type="hidden" name="form_name" value="Inoviqa Website Contact Form" />
+              <input type="hidden" name="submitted_from" value="https://inoviqa.com/contact/" />
+
+              <div class="contact-hidden" aria-hidden="true">
+                <label for="company_website_confirm">Leave this field empty</label>
+                <input
+                  id="company_website_confirm"
+                  type="text"
+                  name="company_website_confirm"
+                  tabindex="-1"
+                  autocomplete="off"
+                />
+              </div>
+
+              <div class="contact-form-grid">
+                <div class="contact-field">
+                  <label for="name">Name *</label>
+                  <input id="name" type="text" name="name" autocomplete="name" required />
+                </div>
+
+                <div class="contact-field">
+                  <label for="email">Email *</label>
+                  <input id="email" type="email" name="email" autocomplete="email" required />
+                </div>
+              </div>
+
+              <div class="contact-form-grid">
+                <div class="contact-field">
+                  <label for="company">Company</label>
+                  <input id="company" type="text" name="company" autocomplete="organization" />
+                </div>
+
+                <div class="contact-field">
+                  <label for="website">Website URL</label>
+                  <input
+                    id="website"
+                    type="url"
+                    name="website"
+                    inputmode="url"
+                    placeholder="https://example.com"
+                  />
+                </div>
+              </div>
+
+              <div class="contact-form-grid">
+                <div class="contact-field">
+                  <label for="project_type">Project Type *</label>
+                  <select id="project_type" name="project_type" required>
+                    <option value="">Select one</option>
+                    {contactProjectTypes.map((item) => <option value={item}>{item}</option>)}
+                  </select>
+                </div>
+
+                <div class="contact-field">
+                  <label for="budget">Budget Range</label>
+                  <select id="budget" name="budget">
+                    {contactBudgetRanges.map((item) => <option value={item}>{item}</option>)}
+                  </select>
+                </div>
+              </div>
+
+              <div class="contact-field">
+                <label for="goal">Main Goal *</label>
+                <input
+                  id="goal"
+                  type="text"
+                  name="goal"
+                  placeholder="Example: improve leads, redesign website, fix tracking, grow SEO"
+                  required
+                />
+              </div>
+
+              <div class="contact-field">
+                <label for="message">Project Details *</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Tell us what you need, what is not working, your current website situation, and what outcome you want."
+                  required></textarea>
+                <small>
+                  Include your current website, target audience, service/product, and any important
+                  timeline if possible.
+                </small>
+              </div>
+
+              <div class="contact-form-footer">
+                <p class="contact-form-note">
+                  By submitting, you agree to be contacted about your project. No spam — just a
+                  focused review of your request.
+                </p>
+
+                <button class="contact-submit" type="submit" data-magnetic>
+                  Send Project Inquiry
+                  <span aria-hidden="true">→</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section-tight">
+      <div class="inq-container">
+        <div class="contact-process-grid" data-reveal>
+          <article class="contact-process-item">
+            <strong>01</strong>
+            <h2>Submit</h2>
+            <p class="inq-body">Share your website, project type, business goal, and context.</p>
+          </article>
+
+          <article class="contact-process-item">
+            <strong>02</strong>
+            <h2>Review</h2>
+            <p class="inq-body">We review the opportunity through a growth-systems lens.</p>
+          </article>
+
+          <article class="contact-process-item">
+            <strong>03</strong>
+            <h2>Discuss</h2>
+            <p class="inq-body">If there is a strong fit, we discuss priorities and next steps.</p>
+          </article>
+
+          <article class="contact-process-item">
+            <strong>04</strong>
+            <h2>Build</h2>
+            <p class="inq-body">We plan and execute the system around measurable outcomes.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section" id="faq">
+      <div class="inq-container">
+        <div class="contact-section-head">
+          <div data-reveal>
+            <span class="inq-kicker">FAQ</span>
+            <h2 class="contact-section-title">Questions before contacting?</h2>
+          </div>
+
+          <p class="contact-section-copy" data-reveal data-reveal-delay="120">
+            Quick answers about project inquiries, website audits, international work, and connected
+            growth systems.
+          </p>
+        </div>
+
+        <div class="contact-faq-wrap" data-contact-faq>
+          {
+            contactFaqs.map((item, index) => (
+              <article class:list={["contact-faq-item", { "is-open": index === 0 }]}>
+                <button
+                  class="contact-faq-button"
+                  type="button"
+                  aria-expanded={index === 0 ? "true" : "false"}
+                  data-contact-faq-button
+                >
+                  <span>{item.question}</span>
+                  <span aria-hidden="true">+</span>
+                </button>
+
+                <div class="contact-faq-panel" data-contact-faq-panel>
+                  <p>{item.answer}</p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const setupContactFaq = () => {
+      const root = document.querySelector("[data-contact-faq]");
+      if (!root) return;
+
+      const items = Array.from(root.querySelectorAll(".contact-faq-item"));
+
+      const setPanelHeights = () => {
+        items.forEach((item) => {
+          const panel = item.querySelector("[data-contact-faq-panel]");
+          if (!panel) return;
+
+          if (item.classList.contains("is-open")) {
+            panel.style.maxHeight = `${panel.scrollHeight}px`;
+          } else {
+            panel.style.maxHeight = "0px";
+          }
+        });
+      };
+
+      items.forEach((item) => {
+        const button = item.querySelector("[data-contact-faq-button]");
+
+        button?.addEventListener("click", () => {
+          const isOpen = item.classList.contains("is-open");
+
+          items.forEach((currentItem) => {
+            currentItem.classList.remove("is-open");
+            currentItem
+              .querySelector("[data-contact-faq-button]")
+              ?.setAttribute("aria-expanded", "false");
+          });
+
+          if (!isOpen) {
+            item.classList.add("is-open");
+            button.setAttribute("aria-expanded", "true");
+          }
+
+          setPanelHeights();
+        });
+      });
+
+      setPanelHeights();
+      window.addEventListener("resize", setPanelHeights, { passive: true });
+    };
+
+    const showContactStatus = () => {
+      const params = new URLSearchParams(window.location.search);
+      const errorBox = document.querySelector("[data-contact-error]");
+
+      if (params.get("status") === "error" && errorBox) {
+        errorBox.classList.add("is-visible");
+      }
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", () => {
+        setupContactFaq();
+        showContactStatus();
+      });
+    } else {
+      setupContactFaq();
+      showContactStatus();
+    }
+  </script>
+</BaseLayout>
+

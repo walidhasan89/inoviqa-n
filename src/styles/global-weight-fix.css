@@ -1,0 +1,10 @@
+﻿/* ==================================================
+   GLOBAL WEIGHT UPDATE
+   Whole website: h3 and span font weight 500
+================================================== */
+
+h3,
+h3 *,
+span {
+  font-weight: 500 !important;
+}

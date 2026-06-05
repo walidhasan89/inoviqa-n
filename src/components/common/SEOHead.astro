@@ -1,0 +1,67 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  image?: string;
+  type?: string;
+  noIndex?: boolean;
+}
+
+const {
+  title,
+  description,
+  path = "/",
+  image = "https://inoviqa.com/assets/inoviqa-favicon.png",
+  type = "website",
+  noIndex = false,
+} = Astro.props;
+
+const siteUrl = Astro.site ?? new URL("https://inoviqa.com");
+const canonicalUrl = new URL(path, siteUrl).toString();
+const imageUrl = new URL(image, siteUrl).toString();
+
+const finalTitle = title.includes("Inoviqa") ? title : `${title} | Inoviqa`;
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Inoviqa LLC",
+  url: "https://inoviqa.com",
+  logo: "https://inoviqa.com/assets/inoviqa-black-logo.png",
+  email: "hello@inoviqa.com",
+  founder: {
+    "@type": "Person",
+    name: "Walid Hasan",
+  },
+  sameAs: [],
+};
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>{finalTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+
+<link rel="icon" type="image/png" href="https://inoviqa.com/assets/inoviqa-favicon.png" />
+
+{noIndex && <meta name="robots" content="noindex, nofollow" />}
+
+<meta property="og:site_name" content="Inoviqa" />
+<meta property="og:type" content={type} />
+<meta property="og:title" content={finalTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={imageUrl} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={finalTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+
+<meta name="theme-color" content="#ffffff" />
+
+<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+

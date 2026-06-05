@@ -1,0 +1,343 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Button from "../../components/common/Button.astro";
+
+import {
+  productPrinciples,
+  productSystemCards,
+  productsFaqs,
+  productsPageProducts,
+} from "../../data/products";
+
+import "../../styles/products.css";
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Inoviqa Products",
+  description:
+    "Products and tools built by Inoviqa, including AuditPilot, LeadOrbiq, ReplyChief, Shopify AdminPalette, and RFQ AutoPilot.",
+  itemListElement: productsPageProducts.map((product, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: product.name,
+    url: `https://inoviqa.com${product.internalHref}`,
+  })),
+};
+---
+
+<BaseLayout
+  title="Products — Built by Inoviqa"
+  description="Explore Inoviqa products and tools including AuditPilot, LeadOrbiq, ReplyChief, Shopify AdminPalette, and RFQ AutoPilot."
+  path="/products/"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+
+  <div class="products-page">
+    <section class="products-hero">
+      <div class="inq-container">
+        <div class="products-hero-grid">
+          <div data-reveal>
+            <span class="inq-kicker">Products</span>
+
+            <h1 class="products-hero-title">
+              Built by <span class="inq-gradient-text">Inoviqa</span>
+            </h1>
+          </div>
+
+          <div class="products-hero-copy" data-reveal data-reveal-delay="140">
+            <p class="inq-lead">
+              Inoviqa builds software products, Chrome extensions, automation tools, and growth
+              systems that turn repeated business problems into scalable digital assets.
+            </p>
+
+            <div class="products-hero-pills" aria-label="Product categories">
+              <span>Website audits</span>
+              <span>Lead intelligence</span>
+              <span>Productivity</span>
+              <span>Shopify workflow</span>
+              <span>Automation</span>
+            </div>
+
+            <div class="inq-hero-actions">
+              <Button href="#products-list">Explore Products</Button>
+              <Button href="/services/automation-product-builds/" variant="outline">
+                Build a Product
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="products-system">
+      <div class="inq-container">
+        <div class="products-system-grid">
+          {
+            productSystemCards.map((card, index) => (
+              <article
+                class="inq-card products-system-card"
+                data-reveal
+                data-reveal-delay={String(index * 90)}
+                data-parallax-card
+              >
+                <div class="inq-card-content">
+                  <span class="inq-kicker">{String(index + 1).padStart(2, "0")}</span>
+                  <h2>{card.title}</h2>
+                  <p class="inq-body">{card.text}</p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section" id="products-list">
+      <div class="inq-container">
+        <div class="products-section-head">
+          <div data-reveal>
+            <span class="inq-kicker">Product ecosystem</span>
+            <h2 class="products-section-title">Tools built around growth, workflow, and automation</h2>
+          </div>
+
+          <p class="products-section-copy" data-reveal data-reveal-delay="120">
+            These products support the same Inoviqa philosophy: find the opportunity, simplify the
+            workflow, improve decision-making, and create scalable systems.
+          </p>
+        </div>
+
+        <div class="products-list">
+          {
+            productsPageProducts.map((product, index) => (
+              <article
+                class="products-item"
+                data-reveal
+                data-reveal-delay={String(index * 80)}
+                data-parallax-card
+              >
+                <div class="products-item-number">{product.number}</div>
+
+                <div class="products-item-main">
+                  <span class="products-item-eyebrow">{product.eyebrow}</span>
+                  <h2>{product.name}</h2>
+                  <span class="products-status">{product.status}</span>
+                </div>
+
+                <div class="products-item-panel">
+                  <div>
+                    <p class="products-item-summary">{product.summary}</p>
+                    <p class="products-item-description">{product.description}</p>
+                  </div>
+
+                  <div class="products-mini-grid">
+                    <div class="products-mini-card">
+                      <strong>Best for</strong>
+                      {product.bestFor.map((item) => <span>{item}</span>)}
+                    </div>
+
+                    <div class="products-mini-card">
+                      <strong>Workflow</strong>
+                      {product.workflow.map((item) => <span>{item}</span>)}
+                    </div>
+                  </div>
+
+                  <div class="products-actions">
+                    <a class="products-link" href={product.internalHref}>
+                      View product page
+                      <span aria-hidden="true">→</span>
+                    </a>
+
+                    <a
+                      class="products-link products-link-outline"
+                      href={product.externalHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Visit website
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section">
+      <div class="inq-container">
+        <div class="products-principles inq-section-tight">
+          <div class="inq-container">
+            <div class="products-section-head">
+              <div data-reveal>
+                <span class="inq-kicker">Product principles</span>
+                <h2 class="products-section-title">How Inoviqa thinks about product systems</h2>
+              </div>
+
+              <p class="products-section-copy" data-reveal data-reveal-delay="120">
+                Every product should be simple enough to use, useful enough to repeat, and valuable
+                enough to become a business asset.
+              </p>
+            </div>
+
+            <div class="products-principles-grid">
+              {
+                productPrinciples.map((item, index) => (
+                  <article
+                    class="products-principle-card"
+                    data-reveal
+                    data-reveal-delay={String(index * 70)}
+                  >
+                    <strong>{item.label}</strong>
+                    <p class="inq-body">{item.text}</p>
+                  </article>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section-tight">
+      <div class="inq-container">
+        <div class="products-cta-card" data-reveal>
+          <div>
+            <span class="footer-kicker">Automation & Product Builds</span>
+
+            <h2>Need a custom tool, extension, or product system?</h2>
+
+            <p>
+              Inoviqa can help plan and build automation systems, dashboards, Chrome extensions,
+              SaaS foundations, internal tools, and workflow products that support long-term growth.
+            </p>
+
+            <div class="inq-hero-actions products-dark-actions">
+              <Button href="/services/automation-product-builds/" variant="primary">
+                Explore Product Builds
+              </Button>
+              <Button href="/contact/" variant="outline">Book a Consultation</Button>
+            </div>
+          </div>
+
+          <div class="products-cta-visual" aria-label="Product build focus areas">
+            <div class="products-cta-row">
+              <span>Workflow</span>
+              <span>Map</span>
+            </div>
+            <div class="products-cta-row">
+              <span>Interface</span>
+              <span>Design</span>
+            </div>
+            <div class="products-cta-row">
+              <span>System</span>
+              <span>Build</span>
+            </div>
+            <div class="products-cta-row">
+              <span>Automation</span>
+              <span>Connect</span>
+            </div>
+            <div class="products-cta-row">
+              <span>Scale</span>
+              <span>Improve</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section" id="faq">
+      <div class="inq-container">
+        <div class="products-section-head">
+          <div data-reveal>
+            <span class="inq-kicker">FAQ</span>
+            <h2 class="products-section-title">Questions about Inoviqa products?</h2>
+          </div>
+
+          <p class="products-section-copy" data-reveal data-reveal-delay="120">
+            Quick answers about the Inoviqa product ecosystem and how product builds connect with
+            growth systems.
+          </p>
+        </div>
+
+        <div class="products-faq-wrap" data-products-faq>
+          {
+            productsFaqs.map((item, index) => (
+              <article class:list={["products-faq-item", { "is-open": index === 0 }]}>
+                <button
+                  class="products-faq-button"
+                  type="button"
+                  aria-expanded={index === 0 ? "true" : "false"}
+                  data-products-faq-button
+                >
+                  <span>{item.question}</span>
+                  <span aria-hidden="true">+</span>
+                </button>
+
+                <div class="products-faq-panel" data-products-faq-panel>
+                  <p>{item.answer}</p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const setupProductsFaq = () => {
+      const root = document.querySelector("[data-products-faq]");
+      if (!root) return;
+
+      const items = Array.from(root.querySelectorAll(".products-faq-item"));
+
+      const setPanelHeights = () => {
+        items.forEach((item) => {
+          const panel = item.querySelector("[data-products-faq-panel]");
+          if (!panel) return;
+
+          if (item.classList.contains("is-open")) {
+            panel.style.maxHeight = `${panel.scrollHeight}px`;
+          } else {
+            panel.style.maxHeight = "0px";
+          }
+        });
+      };
+
+      items.forEach((item) => {
+        const button = item.querySelector("[data-products-faq-button]");
+
+        button?.addEventListener("click", () => {
+          const isOpen = item.classList.contains("is-open");
+
+          items.forEach((currentItem) => {
+            currentItem.classList.remove("is-open");
+            currentItem
+              .querySelector("[data-products-faq-button]")
+              ?.setAttribute("aria-expanded", "false");
+          });
+
+          if (!isOpen) {
+            item.classList.add("is-open");
+            button.setAttribute("aria-expanded", "true");
+          }
+
+          setPanelHeights();
+        });
+      });
+
+      setPanelHeights();
+      window.addEventListener("resize", setPanelHeights, { passive: true });
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", setupProductsFaq);
+    } else {
+      setupProductsFaq();
+    }
+  </script>
+</BaseLayout>
+

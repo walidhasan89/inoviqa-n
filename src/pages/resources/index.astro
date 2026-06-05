@@ -1,0 +1,233 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Button from "../../components/common/Button.astro";
+
+import { resourceCategories, resources } from "../../data/resources";
+
+import "../../styles/resources.css";
+
+const resourcesSchema = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  name: "Inoviqa Resources",
+  description:
+    "Resources about website growth systems, SEO, CRO, analytics, lead generation, automation, and product systems.",
+  url: "https://inoviqa.com/resources/",
+};
+---
+
+<BaseLayout
+  title="Resources — Website Growth, SEO, CRO, Analytics & Automation"
+  description="Explore Inoviqa resources about website growth systems, SEO, CRO, analytics, lead generation, automation, and product systems."
+  path="/resources/"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(resourcesSchema)} />
+
+  <div class="resources-page">
+    <section class="resources-hero">
+      <div class="inq-container">
+        <div class="resources-hero-grid">
+          <div data-reveal>
+            <span class="inq-kicker">Resources</span>
+
+            <h1 class="resources-hero-title">
+              Growth thinking for better <span class="inq-gradient-text">websites</span>.
+            </h1>
+          </div>
+
+          <div class="resources-hero-copy" data-reveal data-reveal-delay="140">
+            <p class="inq-lead">
+              Practical ideas on website growth systems, conversion-focused design, SEO, analytics,
+              lead generation, automation, and product thinking.
+            </p>
+
+            <div class="resources-pills" aria-label="Resource topics">
+              <span>Website Growth</span>
+              <span>SEO</span>
+              <span>CRO</span>
+              <span>Analytics</span>
+              <span>Automation</span>
+            </div>
+
+            <div class="inq-hero-actions">
+              <Button href="#resources-list">Read Resources</Button>
+              <Button href="/contact/" variant="outline">Book a Consultation</Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section-tight">
+      <div class="inq-container">
+        <div class="resources-featured-card" data-reveal>
+          <div>
+            <span class="inq-kicker">Editorial direction</span>
+            <h2>Built for business owners who want clarity before execution</h2>
+            <p>
+              These resources explain the strategy behind websites that attract, convert, track,
+              optimize, and scale — not just look better.
+            </p>
+          </div>
+
+          <div class="resources-featured-list">
+            <span>Website redesign decisions</span>
+            <span>SEO structure and local visibility</span>
+            <span>CRO and UX improvement signals</span>
+            <span>Analytics and conversion tracking basics</span>
+            <span>Automation and product-system thinking</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section" id="resources-list">
+      <div class="inq-container">
+        <div class="resources-section-head">
+          <div data-reveal>
+            <span class="inq-kicker">Articles</span>
+            <h2 class="resources-section-title">Latest resources</h2>
+          </div>
+
+          <p class="resources-section-copy" data-reveal data-reveal-delay="120">
+            Use these articles to understand how Inoviqa thinks about strategy, design, search,
+            conversion, tracking, lead generation, and automation.
+          </p>
+        </div>
+
+        <div class="resources-filter" data-resources-filter>
+          {
+            resourceCategories.map((category, index) => (
+              <button
+                class:list={["resources-filter-button", { "is-active": index === 0 }]}
+                type="button"
+                data-filter-button
+                data-category={category}
+              >
+                {category}
+              </button>
+            ))
+          }
+        </div>
+
+        <div class="resources-grid" data-resources-grid>
+          {
+            resources.map((post, index) => (
+              <article
+                class="inq-card resource-card"
+                data-resource-card
+                data-category={post.category}
+                data-reveal
+                data-reveal-delay={String(index * 70)}
+                data-parallax-card
+              >
+                <div class="inq-card-content">
+                  <div class="resource-card-top">
+                    <span class="resource-number">{post.number}</span>
+                    <span class="resource-category">{post.category}</span>
+                  </div>
+
+                  <h2>{post.title}</h2>
+
+                  <div class="resource-meta">
+                    <span>{post.type}</span>
+                    <span>{post.readTime}</span>
+                  </div>
+
+                  <p class="inq-body">{post.summary}</p>
+
+                  <a
+                    class="resource-card-link"
+                    href={`/resources/${post.slug}/`}
+                    aria-label={`Read ${post.title}`}
+                  >
+                    →
+                  </a>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section-tight">
+      <div class="inq-container">
+        <div class="resources-cta-card" data-reveal>
+          <div>
+            <span class="footer-kicker">Turn insight into action</span>
+
+            <h2>Need help applying this to your website?</h2>
+
+            <p>
+              Start with a growth audit. We will identify what is holding your website back across
+              strategy, SEO, CRO, analytics, lead generation, and automation.
+            </p>
+
+            <div class="inq-hero-actions resources-dark-actions">
+              <Button href="/contact/" variant="primary">Book a Consultation</Button>
+              <Button href="/services/" variant="outline">View Services</Button>
+            </div>
+          </div>
+
+          <div class="resources-cta-visual" aria-label="Resource to action flow">
+            <div class="resources-cta-row">
+              <span>Read</span>
+              <span>Understand</span>
+            </div>
+            <div class="resources-cta-row">
+              <span>Audit</span>
+              <span>Find gaps</span>
+            </div>
+            <div class="resources-cta-row">
+              <span>Plan</span>
+              <span>Prioritize</span>
+            </div>
+            <div class="resources-cta-row">
+              <span>Build</span>
+              <span>Execute</span>
+            </div>
+            <div class="resources-cta-row">
+              <span>Scale</span>
+              <span>Improve</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const initResourceFilters = () => {
+      const filterRoot = document.querySelector("[data-resources-filter]");
+      const cards = Array.from(document.querySelectorAll("[data-resource-card]"));
+
+      if (!filterRoot || !cards.length) return;
+
+      const buttons = Array.from(filterRoot.querySelectorAll("[data-filter-button]"));
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const category = button.getAttribute("data-category");
+
+          buttons.forEach((item) => item.classList.remove("is-active"));
+          button.classList.add("is-active");
+
+          cards.forEach((card) => {
+            const cardCategory = card.getAttribute("data-category");
+            const shouldShow = category === "All" || category === cardCategory;
+
+            card.hidden = !shouldShow;
+          });
+        });
+      });
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initResourceFilters);
+    } else {
+      initResourceFilters();
+    }
+  </script>
+</BaseLayout>
+

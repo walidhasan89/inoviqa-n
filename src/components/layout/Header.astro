@@ -1,0 +1,110 @@
+---
+import MobileMenu from "./MobileMenu.astro";
+import { navigationLinks } from "../../data/navigation";
+
+const currentPath = Astro.url.pathname;
+
+const isActive = (href: string) => {
+  if (href === "/") return currentPath === "/";
+  return currentPath.startsWith(href);
+};
+---
+
+<header class="site-header" data-site-header>
+  <div class="inq-container">
+    <div class="site-header-inner">
+      <a class="site-logo" href="/" aria-label="Inoviqa home">
+        <img src="https://inoviqa.com/assets/inoviqa-black-logo.png" alt="Inoviqa" />
+      </a>
+
+      <nav class="site-nav" aria-label="Primary navigation">
+        {
+          navigationLinks.map((item) => (
+            <a
+              href={item.href}
+              class:list={["site-nav-link", { "is-active": isActive(item.href) }]}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="site-header-actions">
+        <a class="site-header-cta" href="/contact/" data-magnetic>
+          Start Project
+          <span aria-hidden="true">→</span>
+        </a>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          data-menu-open
+          aria-label="Open menu"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<MobileMenu links={navigationLinks} />
+
+<script>
+  const initInoviqaHeader = () => {
+    const header = document.querySelector("[data-site-header]");
+    const openButton = document.querySelector("[data-menu-open]");
+    const closeButton = document.querySelector("[data-menu-close]");
+    const menu = document.querySelector("[data-mobile-menu]");
+    const backdrop = document.querySelector("[data-mobile-backdrop]");
+
+    const updateHeader = () => {
+      if (!header) return;
+      header.classList.toggle("is-scrolled", window.scrollY > 8);
+    };
+
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+
+    if (!openButton || !closeButton || !menu || !backdrop) return;
+
+    const openMenu = () => {
+      menu.classList.add("is-open");
+      backdrop.hidden = false;
+      document.documentElement.classList.add("menu-is-open");
+      openButton.setAttribute("aria-expanded", "true");
+      menu.setAttribute("aria-hidden", "false");
+    };
+
+    const closeMenu = () => {
+      menu.classList.remove("is-open");
+      backdrop.hidden = true;
+      document.documentElement.classList.remove("menu-is-open");
+      openButton.setAttribute("aria-expanded", "false");
+      menu.setAttribute("aria-hidden", "true");
+    };
+
+    openButton.addEventListener("click", openMenu);
+    closeButton.addEventListener("click", closeMenu);
+    backdrop.addEventListener("click", closeMenu);
+
+    menu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeMenu();
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initInoviqaHeader);
+  } else {
+    initInoviqaHeader();
+  }
+</script>
+

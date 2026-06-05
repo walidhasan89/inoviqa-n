@@ -1,0 +1,229 @@
+﻿/* ==================================================
+   WHY INOVIQA — PREMIUM REDESIGN
+================================================== */
+
+.home-why-section {
+  padding-block: clamp(80px, 10vw, 150px);
+}
+
+.home-why-redesign {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.42fr) minmax(0, 0.58fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: start;
+}
+
+.home-why-left {
+  position: sticky;
+  top: 110px;
+}
+
+.home-why-sticky-card {
+  position: relative;
+  min-height: 620px;
+  padding: clamp(26px, 4vw, 46px);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 16% 16%, rgba(223,255,51,0.84), transparent 95px),
+    radial-gradient(circle at 86% 14%, rgba(139,92,246,0.42), transparent 250px),
+    linear-gradient(135deg, #101014 0%, #315cff 62%, #8fa0ff 100%);
+  color: #fff;
+  overflow: hidden;
+  box-shadow: 0 34px 110px rgba(49, 92, 255, 0.20);
+}
+
+.home-why-sticky-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.26;
+}
+
+.home-why-sticky-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.home-why-sticky-card .home-kicker {
+  color: rgba(255,255,255,0.68);
+}
+
+.home-why-sticky-card h2 {
+  max-width: 580px;
+  margin: clamp(54px, 8vw, 96px) 0 0;
+  color: #fff !important;
+  font-size: clamp(52px, 6vw, 88px) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1px !important;
+  line-height: 0.9;
+}
+
+.home-why-sticky-card h2 span {
+  display: block;
+  background: linear-gradient(105deg, #ffffff, #dfff33 62%, #ffffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+.home-why-sticky-card p {
+  max-width: 460px;
+  margin: 24px 0 0;
+  color: rgba(255,255,255,0.72);
+  font-size: 15px !important;
+  line-height: 1.6;
+}
+
+.home-why-mini-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: clamp(46px, 7vw, 90px);
+}
+
+.home-why-mini-stat {
+  padding: 16px;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 18px;
+  background: rgba(255,255,255,0.10);
+  backdrop-filter: blur(18px);
+}
+
+.home-why-mini-stat strong {
+  display: block;
+  color: #fff;
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.home-why-mini-stat span {
+  display: block;
+  margin-top: 8px;
+  color: rgba(255,255,255,0.66);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.home-why-panel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.home-why-panel {
+  position: relative;
+  min-height: 300px;
+  padding: 24px;
+  border: 1px solid rgba(16, 16, 20, 0.08);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 84% 14%, rgba(49,92,255,0.12), transparent 120px),
+    linear-gradient(145deg, rgba(255,255,255,0.98), rgba(247,248,251,0.88));
+  overflow: hidden;
+  transition:
+    transform 420ms cubic-bezier(.22,1,.36,1),
+    box-shadow 420ms cubic-bezier(.22,1,.36,1),
+    border-color 420ms cubic-bezier(.22,1,.36,1);
+}
+
+.home-why-panel:hover {
+  transform: translateY(-6px);
+  border-color: rgba(49, 92, 255, 0.22);
+  box-shadow: 0 28px 90px rgba(16, 16, 20, 0.10);
+}
+
+.home-why-panel:nth-child(1),
+.home-why-panel:nth-child(4) {
+  background:
+    radial-gradient(circle at 86% 14%, rgba(223,255,51,0.66), transparent 96px),
+    linear-gradient(135deg, #315cff, #7d8dff);
+  color: #fff;
+}
+
+.home-why-panel:nth-child(2) {
+  background:
+    radial-gradient(circle at 78% 16%, rgba(255,255,255,0.16), transparent 120px),
+    #101014;
+  color: #fff;
+}
+
+.home-why-number {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  background: #101014;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.home-why-panel:nth-child(1) .home-why-number,
+.home-why-panel:nth-child(2) .home-why-number,
+.home-why-panel:nth-child(4) .home-why-number {
+  background: rgba(255,255,255,0.14);
+  color: #fff;
+}
+
+.home-why-panel h3 {
+  max-width: 12ch;
+  margin: clamp(54px, 6vw, 82px) 0 0;
+  font-size: clamp(28px, 3vw, 42px) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1px !important;
+  line-height: 1.03;
+}
+
+.home-why-panel p {
+  max-width: 420px;
+  margin: 14px 0 0;
+  color: rgba(16, 16, 20, 0.64);
+  font-size: 15px !important;
+  line-height: 1.6;
+}
+
+.home-why-panel:nth-child(1) p,
+.home-why-panel:nth-child(2) p,
+.home-why-panel:nth-child(4) p {
+  color: rgba(255,255,255,0.72);
+}
+
+@media (max-width: 1100px) {
+  .home-why-redesign {
+    grid-template-columns: 1fr;
+  }
+
+  .home-why-left {
+    position: relative;
+    top: auto;
+  }
+
+  .home-why-sticky-card {
+    min-height: 480px;
+  }
+}
+
+@media (max-width: 760px) {
+  .home-why-panel-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-why-sticky-card {
+    min-height: 420px;
+    border-radius: 26px;
+  }
+
+  .home-why-mini-stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-why-panel {
+    min-height: 260px;
+  }
+}

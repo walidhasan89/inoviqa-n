@@ -1,0 +1,73 @@
+---
+import { footerLinks, productLinks } from "../../data/navigation";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="inq-container">
+    <div class="footer-cta" data-reveal>
+      <span class="footer-kicker">Ready to build a measurable growth system?</span>
+
+      <a class="footer-email" href="mailto:hello@inoviqa.com">
+        hello@inoviqa.com
+      </a>
+
+      <p>
+        Work with strategists, designers, developers, and growth systems thinkers who build
+        websites that perform — not just look good.
+      </p>
+    </div>
+
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" aria-label="Inoviqa home">
+          <img src="https://inoviqa.com/assets/inoviqa-white-logo.png" alt="Inoviqa" />
+        </a>
+
+        <p>
+          Digital growth systems for businesses that need to attract qualified traffic, convert
+          visitors, track real performance, optimize journeys, and scale through automation.
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h2>Navigation</h2>
+        <nav aria-label="Footer navigation">
+          {
+            footerLinks.map((item) => (
+              <a href={item.href}>{item.label}</a>
+            ))
+          }
+        </nav>
+      </div>
+
+      <div class="footer-column">
+        <h2>Products</h2>
+        <nav aria-label="Footer product navigation">
+          {
+            productLinks.map((item) => (
+              <a href={item.href}>{item.label}</a>
+            ))
+          }
+        </nav>
+      </div>
+
+      <div class="footer-column">
+        <h2>Contact</h2>
+        <nav aria-label="Footer contact links">
+          <a href="mailto:hello@inoviqa.com">hello@inoviqa.com</a>
+          <a href="/contact/">Start a project</a>
+          <a href="/privacy-policy/">Privacy Policy</a>
+          <a href="/terms/">Terms</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© {year} Inoviqa LLC. All rights reserved.</p>
+      <p>Attract → Convert → Track → Optimize → Scale</p>
+    </div>
+  </div>
+</footer>
+

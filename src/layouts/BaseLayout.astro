@@ -1,0 +1,62 @@
+---
+import "../styles/global-weight-fix.css";
+import SEOHead from "../components/common/SEOHead.astro";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import ScrollEffects from "../components/layout/ScrollEffects.astro";
+
+import "../styles/global.css";
+import "../styles/components.css";
+import "../styles/global-typography.css";
+
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  image?: string;
+  type?: string;
+  noIndex?: boolean;
+}
+
+const {
+  title,
+  description,
+  path = "/",
+  image,
+  type,
+  noIndex = false,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <SEOHead
+      title={title}
+      description={description}
+      path={path}
+      image={image}
+      type={type}
+      noIndex={noIndex}
+    />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <Header />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <ScrollEffects />
+  </body>
+</html>
+
+
+
+
+

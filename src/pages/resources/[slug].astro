@@ -1,0 +1,304 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Button from "../../components/common/Button.astro";
+import { resources } from "../../data/resources";
+
+import "../../styles/resource-detail.css";
+
+export function getStaticPaths() {
+  return resources.map((post) => ({
+    params: {
+      slug: post.slug,
+    },
+    props: {
+      post,
+    },
+  }));
+}
+
+const { post } = Astro.props;
+
+const relatedPosts = resources
+  .filter((item) => item.slug !== post.slug)
+  .slice(0, 3);
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: post.title,
+  description: post.seoDescription,
+  url: `https://inoviqa.com/resources/${post.slug}/`,
+  author: {
+    "@type": "Organization",
+    name: "Inoviqa LLC",
+    url: "https://inoviqa.com",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "Inoviqa LLC",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://inoviqa.com/assets/inoviqa-black-logo.png",
+    },
+  },
+};
+---
+
+<BaseLayout
+  title={post.seoTitle}
+  description={post.seoDescription}
+  path={`/resources/${post.slug}/`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <div class="resource-detail-page">
+    <section class="resource-detail-hero">
+      <div class="inq-container">
+        <div class="resource-detail-hero-grid">
+          <div data-reveal>
+            <span class="resource-detail-number">{post.number}</span>
+            <span class="inq-kicker">{post.category}</span>
+
+            <h1 class="resource-detail-title">{post.title}</h1>
+          </div>
+
+          <div class="resource-detail-copy" data-reveal data-reveal-delay="140">
+            <div class="resource-detail-meta">
+              <span>{post.type}</span>
+              <span>{post.readTime}</span>
+            </div>
+
+            <p class="inq-lead">{post.summary}</p>
+
+            <div class="inq-hero-actions">
+              <Button href="/contact/">Apply This Strategy</Button>
+              <Button href="/resources/" variant="outline">All Resources</Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="resource-detail-intro">
+      <div class="inq-container">
+        <p class="resource-detail-statement" data-reveal>
+          {post.intro}
+        </p>
+      </div>
+    </section>
+
+    <section class="inq-section-tight">
+      <div class="inq-container">
+        <div class="resource-article-grid">
+          <aside class="resource-article-sidebar" data-reveal>
+            <h2>In this article</h2>
+            <nav aria-label="Article sections">
+              {
+                post.sections.map((section, index) => (
+                  <a href={`#section-${index + 1}`}>{section.title}</a>
+                ))
+              }
+            </nav>
+
+            <div class="resource-related-services">
+              {post.relatedServices.map((service) => <span>{service}</span>)}
+            </div>
+          </aside>
+
+          <article class="resource-article-content">
+            {
+              post.sections.map((section, index) => (
+                <section
+                  class="resource-article-section"
+                  id={`section-${index + 1}`}
+                  data-reveal
+                  data-reveal-delay={String(index * 80)}
+                >
+                  <h2>{section.title}</h2>
+                  <p>{section.text}</p>
+                </section>
+              ))
+            }
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section-tight">
+      <div class="inq-container">
+        <div class="resource-takeaway-card" data-reveal>
+          <div>
+            <span class="inq-kicker">Key takeaways</span>
+            <h2>What to remember</h2>
+          </div>
+
+          <div class="resource-takeaway-list">
+            {post.takeaways.map((item) => <span>{item}</span>)}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section">
+      <div class="inq-container">
+        <div class="resource-detail-meta" style="margin-bottom: 2rem;" data-reveal>
+          <span>Related resources</span>
+        </div>
+
+        <div class="resource-related-grid">
+          {
+            relatedPosts.map((item, index) => (
+              <article
+                class="inq-card resource-related-card"
+                data-reveal
+                data-reveal-delay={String(index * 90)}
+                data-parallax-card
+              >
+                <div class="inq-card-content">
+                  <span class="inq-kicker">{item.category}</span>
+                  <h3>{item.title}</h3>
+                  <p class="inq-body">{item.summary}</p>
+                  <a
+                    class="resource-related-link"
+                    href={`/resources/${item.slug}/`}
+                    aria-label={`Read ${item.title}`}
+                  >
+                    →
+                  </a>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section-tight">
+      <div class="inq-container">
+        <div class="resource-cta-card" data-reveal>
+          <div>
+            <span class="footer-kicker">Apply the strategy</span>
+
+            <h2>Want this thinking applied to your website?</h2>
+
+            <p>
+              Inoviqa can audit your website and build a clearer plan across strategy, SEO, CRO,
+              analytics, lead generation, automation, and growth systems.
+            </p>
+
+            <div class="inq-hero-actions resource-dark-actions">
+              <Button href="/contact/" variant="primary">Book a Consultation</Button>
+              <Button href="/services/" variant="outline">View Services</Button>
+            </div>
+          </div>
+
+          <div class="resource-cta-visual" aria-label="Article action flow">
+            <div class="resource-cta-row">
+              <span>Insight</span>
+              <span>Learn</span>
+            </div>
+            <div class="resource-cta-row">
+              <span>Audit</span>
+              <span>Diagnose</span>
+            </div>
+            <div class="resource-cta-row">
+              <span>Strategy</span>
+              <span>Plan</span>
+            </div>
+            <div class="resource-cta-row">
+              <span>Website</span>
+              <span>Improve</span>
+            </div>
+            <div class="resource-cta-row">
+              <span>Growth</span>
+              <span>Scale</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section" id="faq">
+      <div class="inq-container">
+        <div class="resource-detail-meta" style="margin-bottom: 2rem;" data-reveal>
+          <span>FAQ</span>
+        </div>
+
+        <div class="resource-faq-wrap" data-resource-faq>
+          {
+            post.faqs.map((item, index) => (
+              <article class:list={["resource-faq-item", { "is-open": index === 0 }]}>
+                <button
+                  class="resource-faq-button"
+                  type="button"
+                  aria-expanded={index === 0 ? "true" : "false"}
+                  data-resource-faq-button
+                >
+                  <span>{item.question}</span>
+                  <span aria-hidden="true">+</span>
+                </button>
+
+                <div class="resource-faq-panel" data-resource-faq-panel>
+                  <p>{item.answer}</p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const setupResourceFaq = () => {
+      const root = document.querySelector("[data-resource-faq]");
+      if (!root) return;
+
+      const items = Array.from(root.querySelectorAll(".resource-faq-item"));
+
+      const setPanelHeights = () => {
+        items.forEach((item) => {
+          const panel = item.querySelector("[data-resource-faq-panel]");
+          if (!panel) return;
+
+          if (item.classList.contains("is-open")) {
+            panel.style.maxHeight = `${panel.scrollHeight}px`;
+          } else {
+            panel.style.maxHeight = "0px";
+          }
+        });
+      };
+
+      items.forEach((item) => {
+        const button = item.querySelector("[data-resource-faq-button]");
+
+        button?.addEventListener("click", () => {
+          const isOpen = item.classList.contains("is-open");
+
+          items.forEach((currentItem) => {
+            currentItem.classList.remove("is-open");
+            currentItem
+              .querySelector("[data-resource-faq-button]")
+              ?.setAttribute("aria-expanded", "false");
+          });
+
+          if (!isOpen) {
+            item.classList.add("is-open");
+            button.setAttribute("aria-expanded", "true");
+          }
+
+          setPanelHeights();
+        });
+      });
+
+      setPanelHeights();
+      window.addEventListener("resize", setPanelHeights, { passive: true });
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", setupResourceFaq);
+    } else {
+      setupResourceFaq();
+    }
+  </script>
+</BaseLayout>

@@ -1,0 +1,395 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Button from "../../components/common/Button.astro";
+
+import {
+  aboutCapabilities,
+  aboutFaqs,
+  aboutFramework,
+  aboutMilestones,
+  aboutPrinciples,
+  aboutProducts,
+} from "../../data/about";
+
+import "../../styles/about.css";
+
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  name: "About Inoviqa",
+  description:
+    "Inoviqa LLC is a premium digital growth systems company founded by Walid Hasan, helping businesses with websites, SEO, CRO, analytics, lead generation, automation, and product systems.",
+  url: "https://inoviqa.com/about/",
+  mainEntity: {
+    "@type": "Organization",
+    name: "Inoviqa LLC",
+    url: "https://inoviqa.com",
+    founder: {
+      "@type": "Person",
+      name: "Walid Hasan",
+    },
+  },
+};
+---
+
+<BaseLayout
+  title="About — Inoviqa Digital Growth Systems Company"
+  description="Learn about Inoviqa LLC, a premium digital growth systems company founded by Walid Hasan. Inoviqa helps businesses with websites, SEO, CRO, analytics, lead generation, automation, and product systems."
+  path="/about/"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(aboutSchema)} />
+
+  <div class="about-page">
+    <section class="about-hero">
+      <div class="inq-container">
+        <div class="about-hero-grid">
+          <div data-reveal>
+            <span class="inq-kicker">About Inoviqa</span>
+
+            <h1 class="about-hero-title">
+              Digital growth systems, not ordinary websites.
+            </h1>
+          </div>
+
+          <div class="about-hero-copy" data-reveal data-reveal-delay="140">
+            <p class="inq-lead">
+              Inoviqa is a premium digital growth systems company helping businesses attract
+              qualified traffic, convert visitors, track performance, optimize user journeys, and
+              scale through automation.
+            </p>
+
+            <div class="about-hero-pills" aria-label="Inoviqa focus areas">
+              <span>Strategy</span>
+              <span>Design</span>
+              <span>SEO</span>
+              <span>CRO</span>
+              <span>Analytics</span>
+              <span>Automation</span>
+            </div>
+
+            <div class="inq-hero-actions">
+              <Button href="/contact/">Book a Consultation</Button>
+              <Button href="/services/" variant="outline">View Services</Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-intro">
+      <div class="inq-container">
+        <p class="about-intro-statement" data-reveal>
+          Inoviqa exists to turn underperforming digital presence into
+          <strong class="inq-gradient-text">measurable business assets</strong> — combining
+          strategy, design, SEO, analytics, conversion optimization, lead generation, automation,
+          and product thinking.
+        </p>
+      </div>
+    </section>
+
+    <section class="inq-section-tight">
+      <div class="inq-container">
+        <div class="about-positioning-grid">
+          <article class="inq-card about-position-card" data-reveal data-parallax-card>
+            <div class="inq-card-content">
+              <span class="inq-kicker">Positioning</span>
+              <h2>Not a normal web design agency</h2>
+              <p>
+                Inoviqa does not treat a website as a collection of pages. We treat it as a business
+                system — one that needs strategy, structure, visibility, trust, conversion flow,
+                measurement, and room to scale.
+              </p>
+              <p>
+                The result is a cleaner, sharper, more useful website experience built around real
+                business outcomes.
+              </p>
+            </div>
+          </article>
+
+          <article class="about-founder-card" data-reveal data-reveal-delay="120" data-parallax-card>
+            <div class="about-founder-mark">
+              <span>WH</span>
+            </div>
+
+            <h2>Founded by Walid Hasan</h2>
+
+            <p>
+              Walid Hasan founded Inoviqa LLC with a business-first mindset: solve growth problems
+              through better websites, better data, better user journeys, better systems, and
+              practical automation.
+            </p>
+
+            <p>
+              Inoviqa combines creative direction, technical execution, analytics thinking, CRO,
+              SEO, product systems, and automation into one growth-focused approach.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section">
+      <div class="inq-container">
+        <div class="about-section-head">
+          <div data-reveal>
+            <span class="inq-kicker">Framework</span>
+            <h2 class="about-section-title">The growth system behind the work</h2>
+          </div>
+
+          <p class="about-section-copy" data-reveal data-reveal-delay="120">
+            Inoviqa uses a simple framework to keep every website and digital system connected to
+            measurable growth: Attract, Convert, Track, Optimize, and Scale.
+          </p>
+        </div>
+
+        <div class="about-framework-grid" data-reveal>
+          {
+            aboutFramework.map((item) => (
+              <article class="about-framework-item">
+                <strong>{item.label}</strong>
+                <p>{item.text}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section-tight">
+      <div class="inq-container">
+        <div class="about-section-head">
+          <div data-reveal>
+            <span class="inq-kicker">Principles</span>
+            <h2 class="about-section-title">What guides every project</h2>
+          </div>
+
+          <p class="about-section-copy" data-reveal data-reveal-delay="120">
+            The visual style matters, but the strategy underneath matters more. These principles
+            keep Inoviqa focused on outcomes, clarity, performance, and scale.
+          </p>
+        </div>
+
+        <div class="about-principles-wrap">
+          {
+            aboutPrinciples.map((item, index) => (
+              <article
+                class="about-principle-item"
+                data-reveal
+                data-reveal-delay={String(index * 70)}
+              >
+                <span class="about-principle-number">{item.number}</span>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section-tight">
+      <div class="inq-container">
+        <div class="about-capabilities-card" data-reveal>
+          <div>
+            <span class="inq-kicker">Capabilities</span>
+            <h2>What Inoviqa helps businesses build</h2>
+          </div>
+
+          <div class="about-capability-list">
+            {aboutCapabilities.map((item) => <span>{item}</span>)}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section">
+      <div class="inq-container">
+        <div class="about-section-head">
+          <div data-reveal>
+            <span class="inq-kicker">Product-builder mindset</span>
+            <h2 class="about-section-title">Built by Inoviqa</h2>
+          </div>
+
+          <p class="about-section-copy" data-reveal data-reveal-delay="120">
+            Inoviqa also builds software products and Chrome extensions. This product mindset
+            influences how we think about websites, automation, systems, and scale.
+          </p>
+        </div>
+
+        <div class="about-products-grid">
+          {
+            aboutProducts.map((product, index) => (
+              <article
+                class="inq-card about-product-card"
+                data-reveal
+                data-reveal-delay={String(index * 70)}
+                data-parallax-card
+              >
+                <div class="inq-card-content">
+                  <span class="inq-kicker">{String(index + 1).padStart(2, "0")}</span>
+                  <h3>{product.name}</h3>
+                  <p class="inq-body">{product.text}</p>
+                  <a class="about-product-link" href={product.href} aria-label={`View ${product.name}`}>
+                    →
+                  </a>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section-tight">
+      <div class="inq-container">
+        <div class="about-milestone-grid" data-reveal>
+          {
+            aboutMilestones.map((item) => (
+              <div class="about-milestone">
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section">
+      <div class="inq-container">
+        <div class="about-section-head">
+          <div data-reveal>
+            <span class="inq-kicker">FAQ</span>
+            <h2 class="about-section-title">Questions about Inoviqa?</h2>
+          </div>
+
+          <p class="about-section-copy" data-reveal data-reveal-delay="120">
+            Quick answers about what Inoviqa is, how it works, and why the company is positioned as
+            a digital growth systems company.
+          </p>
+        </div>
+
+        <div class="about-faq-wrap" data-about-faq>
+          {
+            aboutFaqs.map((item, index) => (
+              <article class:list={["about-faq-item", { "is-open": index === 0 }]}>
+                <button
+                  class="about-faq-button"
+                  type="button"
+                  aria-expanded={index === 0 ? "true" : "false"}
+                  data-about-faq-button
+                >
+                  <span>{item.question}</span>
+                  <span aria-hidden="true">+</span>
+                </button>
+
+                <div class="about-faq-panel" data-about-faq-panel>
+                  <p>{item.answer}</p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section-tight">
+      <div class="inq-container">
+        <div class="about-cta-card" data-reveal>
+          <div>
+            <span class="footer-kicker">Work with Inoviqa</span>
+
+            <h2>Ready to build a website that performs?</h2>
+
+            <p>
+              Start with clarity. We will identify what your website needs across strategy, design,
+              SEO, CRO, analytics, lead generation, automation, and scalable systems.
+            </p>
+
+            <div class="inq-hero-actions about-dark-actions">
+              <Button href="/contact/" variant="primary">Book a Consultation</Button>
+              <Button href="/case-studies/" variant="outline">View Case Studies</Button>
+            </div>
+          </div>
+
+          <div class="about-cta-visual" aria-label="Inoviqa growth stages">
+            <div class="about-cta-row">
+              <span>Attract</span>
+              <span>Traffic</span>
+            </div>
+            <div class="about-cta-row">
+              <span>Convert</span>
+              <span>Leads</span>
+            </div>
+            <div class="about-cta-row">
+              <span>Track</span>
+              <span>Data</span>
+            </div>
+            <div class="about-cta-row">
+              <span>Optimize</span>
+              <span>CRO</span>
+            </div>
+            <div class="about-cta-row">
+              <span>Scale</span>
+              <span>Systems</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const setupAboutFaq = () => {
+      const root = document.querySelector("[data-about-faq]");
+      if (!root) return;
+
+      const items = Array.from(root.querySelectorAll(".about-faq-item"));
+
+      const setPanelHeights = () => {
+        items.forEach((item) => {
+          const panel = item.querySelector("[data-about-faq-panel]");
+          if (!panel) return;
+
+          if (item.classList.contains("is-open")) {
+            panel.style.maxHeight = `${panel.scrollHeight}px`;
+          } else {
+            panel.style.maxHeight = "0px";
+          }
+        });
+      };
+
+      items.forEach((item) => {
+        const button = item.querySelector("[data-about-faq-button]");
+
+        button?.addEventListener("click", () => {
+          const isOpen = item.classList.contains("is-open");
+
+          items.forEach((currentItem) => {
+            currentItem.classList.remove("is-open");
+            currentItem
+              .querySelector("[data-about-faq-button]")
+              ?.setAttribute("aria-expanded", "false");
+          });
+
+          if (!isOpen) {
+            item.classList.add("is-open");
+            button.setAttribute("aria-expanded", "true");
+          }
+
+          setPanelHeights();
+        });
+      });
+
+      setPanelHeights();
+      window.addEventListener("resize", setPanelHeights, { passive: true });
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", setupAboutFaq);
+    } else {
+      setupAboutFaq();
+    }
+  </script>
+</BaseLayout>
+

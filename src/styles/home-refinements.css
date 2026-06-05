@@ -1,0 +1,446 @@
+﻿/* ==================================================
+   HOME REFINEMENTS — SAFE OVERRIDES ONLY
+================================================== */
+
+/* 01. About / Big Brand Statement */
+
+.home-intro {
+  position: relative;
+}
+
+.home-intro .inq-container {
+  position: relative;
+  padding: clamp(30px, 5vw, 64px);
+  border: 1px solid rgba(16, 16, 20, 0.08);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 8% 14%, rgba(49, 92, 255, 0.12), transparent 260px),
+    radial-gradient(circle at 88% 10%, rgba(139, 92, 246, 0.10), transparent 280px),
+    linear-gradient(145deg, rgba(255,255,255,0.96), rgba(247,248,251,0.86));
+  overflow: hidden;
+}
+
+.home-intro .inq-container::after {
+  content: "";
+  position: absolute;
+  right: clamp(18px, 5vw, 70px);
+  bottom: clamp(18px, 4vw, 52px);
+  width: clamp(110px, 16vw, 230px);
+  height: clamp(110px, 16vw, 230px);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 28%, rgba(223,255,51,0.84), transparent 34%),
+    linear-gradient(135deg, rgba(49,92,255,0.22), rgba(139,92,246,0.16));
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.home-intro h2,
+.home-intro h2 span {
+  position: relative;
+  z-index: 1;
+  max-width: 1120px;
+  background: linear-gradient(105deg, #111827 0%, #2451ff 42%, #8f9dff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+.home-intro .home-section-description {
+  position: relative;
+  z-index: 1;
+  max-width: 880px;
+  margin-top: 26px;
+  color: rgba(16, 16, 20, 0.70);
+  font-size: clamp(20px, 2.25vw, 30px) !important;
+  font-weight: 500;
+  line-height: 1.28;
+  letter-spacing: 0.1px;
+}
+
+/* 02. Growth System Cards */
+
+.home-framework-grid article {
+  background:
+    radial-gradient(circle at 85% 14%, rgba(223,255,51,0.34), transparent 86px),
+    linear-gradient(145deg, rgba(255,255,255,0.96), rgba(239,243,255,0.82)) !important;
+}
+
+.home-framework-grid article:nth-child(2n) {
+  background:
+    radial-gradient(circle at 84% 16%, rgba(49,92,255,0.16), transparent 110px),
+    linear-gradient(145deg, rgba(255,255,255,0.98), rgba(246,247,255,0.92)) !important;
+}
+
+.home-framework-grid article:nth-child(3n) {
+  background:
+    radial-gradient(circle at 84% 16%, rgba(139,92,246,0.15), transparent 110px),
+    linear-gradient(145deg, rgba(255,255,255,0.98), rgba(247,248,251,0.92)) !important;
+}
+
+/* 03. Services accordion button link */
+
+.home-tags a,
+.home-tags a.home-service-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 9px 15px !important;
+  border-color: rgba(49, 92, 255, 0.20) !important;
+  background: #101014 !important;
+  color: #fff !important;
+  font-weight: 600;
+  transition:
+    transform 350ms cubic-bezier(.22,1,.36,1),
+    background 350ms cubic-bezier(.22,1,.36,1);
+}
+
+.home-tags a:hover,
+.home-tags a.home-service-link:hover {
+  transform: translateY(-2px);
+  background: #315cff !important;
+}
+
+/* 04. Agency Milestones */
+
+.home-milestones {
+  padding-block: clamp(70px, 9vw, 130px);
+}
+
+.home-milestones .inq-container {
+  position: relative;
+  padding: clamp(28px, 5vw, 60px);
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 12% 16%, rgba(49,92,255,0.14), transparent 270px),
+    radial-gradient(circle at 86% 12%, rgba(223,255,51,0.34), transparent 180px),
+    #f7f8fb;
+  overflow: hidden;
+}
+
+.home-milestones .home-kicker {
+  margin-bottom: 24px;
+}
+
+.home-milestone-grid {
+  margin-top: 0 !important;
+  background: rgba(255,255,255,0.72);
+  border-radius: 22px;
+  overflow: hidden;
+  backdrop-filter: blur(18px);
+}
+
+.home-milestones .home-section-description {
+  max-width: 860px;
+  margin: clamp(24px, 4vw, 40px) 0 0 auto;
+  color: #101014;
+  font-size: clamp(24px, 3vw, 42px) !important;
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: 0.1px;
+}
+
+/* 05. Why Inoviqa redesign */
+
+.home-why-grid {
+  counter-reset: why-card;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 18px !important;
+}
+
+.home-why-grid article {
+  counter-increment: why-card;
+  min-height: 310px !important;
+  padding: 24px !important;
+  border-radius: 26px !important;
+  border: 1px solid rgba(16, 16, 20, 0.08) !important;
+  background:
+    radial-gradient(circle at 85% 12%, rgba(49,92,255,0.12), transparent 120px),
+    linear-gradient(145deg, rgba(255,255,255,0.98), rgba(247,248,251,0.88)) !important;
+}
+
+.home-why-grid article::before {
+  content: counter(why-card, decimal-leading-zero);
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  background: #101014;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.home-why-grid article:nth-child(1) {
+  grid-column: span 2;
+  background:
+    radial-gradient(circle at 88% 14%, rgba(223,255,51,0.78), transparent 96px),
+    linear-gradient(135deg, #315cff, #7d8dff) !important;
+  color: #fff;
+}
+
+.home-why-grid article:nth-child(2) {
+  background:
+    radial-gradient(circle at 76% 16%, rgba(255,255,255,0.17), transparent 120px),
+    #101014 !important;
+  color: #fff;
+}
+
+.home-why-grid article:nth-child(1)::before,
+.home-why-grid article:nth-child(2)::before {
+  background: rgba(255,255,255,0.16);
+  color: #fff;
+}
+
+.home-why-grid h3 {
+  max-width: 13ch;
+  margin-top: clamp(48px, 6vw, 76px) !important;
+}
+
+.home-why-grid p {
+  max-width: 470px;
+}
+
+/* 06. Testimonials redesign */
+
+.home-testimonials {
+  padding-block: clamp(76px, 10vw, 150px) !important;
+  background: #fff !important;
+}
+
+.home-testimonials .inq-container {
+  padding: clamp(28px, 5vw, 64px);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 12% 16%, rgba(49,92,255,0.35), transparent 300px),
+    radial-gradient(circle at 88% 12%, rgba(139,92,246,0.28), transparent 300px),
+    #101014;
+  color: #fff;
+  overflow: hidden;
+}
+
+.home-testimonial-head {
+  border-bottom-color: rgba(255,255,255,0.12) !important;
+}
+
+.home-testimonial-head .home-kicker,
+.home-testimonials .home-kicker {
+  color: rgba(255,255,255,0.66);
+}
+
+.home-testimonial-head h2 {
+  background: linear-gradient(105deg, #ffffff 0%, #9fb0ff 70%, #dfe5ff 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+.home-testimonial-head button {
+  border-color: rgba(255,255,255,0.14) !important;
+  background: rgba(255,255,255,0.08) !important;
+  color: #fff !important;
+}
+
+.home-testimonial-grid {
+  grid-template-columns: 0.35fr 1fr !important;
+  gap: clamp(30px, 6vw, 92px) !important;
+  align-items: end !important;
+}
+
+.home-testimonial-grid blockquote {
+  color: #fff !important;
+  font-size: clamp(34px, 5vw, 64px) !important;
+}
+
+.home-testimonial-grid blockquote::before {
+  color: rgba(223,255,51,0.42) !important;
+}
+
+.home-testimonial-grid > div:first-child strong {
+  background: linear-gradient(105deg, #dfff33, #ffffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.home-testimonial-grid > div:first-child p {
+  color: rgba(255,255,255,0.68) !important;
+}
+
+.home-testimonial-grid > div:last-child {
+  grid-column: 2 / -1;
+  justify-self: end;
+  max-width: 360px;
+  border-color: rgba(255,255,255,0.12) !important;
+  background: rgba(255,255,255,0.08) !important;
+  color: #fff;
+  backdrop-filter: blur(18px);
+}
+
+.home-testimonial-grid > div:last-child strong {
+  color: #fff !important;
+}
+
+.home-testimonial-grid > div:last-child p {
+  color: rgba(255,255,255,0.64) !important;
+}
+
+.home-testimonials .home-section-description {
+  color: rgba(255,255,255,0.72);
+  font-size: 18px !important;
+  margin-top: 34px;
+}
+
+.home-brand-tiles div {
+  border-color: rgba(255,255,255,0.12) !important;
+  background: rgba(255,255,255,0.08) !important;
+  color: rgba(255,255,255,0.78) !important;
+}
+
+/* 07. FAQ two-column redesign */
+
+.home-faq-section {
+  padding-block: clamp(76px, 10vw, 140px);
+}
+
+.home-faq-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.42fr) minmax(0, 0.58fr);
+  gap: clamp(26px, 5vw, 70px);
+  align-items: start;
+}
+
+.home-faq-visual {
+  position: sticky;
+  top: 110px;
+  min-height: 520px;
+  padding: clamp(24px, 4vw, 42px);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(223,255,51,0.85), transparent 90px),
+    radial-gradient(circle at 82% 18%, rgba(139,92,246,0.46), transparent 220px),
+    linear-gradient(135deg, #101014, #315cff);
+  color: #fff;
+  overflow: hidden;
+}
+
+.home-faq-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.26;
+}
+
+.home-faq-visual > * {
+  position: relative;
+  z-index: 1;
+}
+
+.home-faq-visual .home-kicker {
+  color: rgba(255,255,255,0.68);
+}
+
+.home-faq-icon {
+  display: grid;
+  place-items: center;
+  width: clamp(110px, 14vw, 170px);
+  height: clamp(110px, 14vw, 170px);
+  margin: clamp(52px, 8vw, 100px) 0 34px;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 50%;
+  background: rgba(255,255,255,0.10);
+  backdrop-filter: blur(18px);
+}
+
+.home-faq-icon span {
+  font-size: clamp(58px, 8vw, 104px);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.home-faq-visual h2 {
+  margin: 0;
+  color: #fff !important;
+}
+
+.home-faq-visual p {
+  max-width: 380px;
+  margin: 18px 0 0;
+  color: rgba(255,255,255,0.70);
+  font-size: 15px !important;
+  line-height: 1.6;
+}
+
+.home-faq-content .home-faq-wrap {
+  margin-top: 0;
+}
+
+/* 08. CTA after FAQ */
+
+.home-final-cta-section {
+  padding-top: 0 !important;
+}
+
+.home-final-cta {
+  background:
+    radial-gradient(circle at 16% 14%, rgba(223,255,51,0.26), transparent 190px),
+    radial-gradient(circle at 82% 12%, rgba(49,92,255,0.38), transparent 300px),
+    #101014 !important;
+}
+
+.home-final-cta .inq-hero-actions {
+  justify-content: flex-start;
+}
+
+/* Responsive */
+
+@media (max-width: 1100px) {
+  .home-faq-layout,
+  .home-testimonial-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .home-faq-visual {
+    position: relative;
+    top: auto;
+    min-height: 420px;
+  }
+
+  .home-testimonial-grid > div:last-child {
+    grid-column: auto;
+    justify-self: start;
+  }
+
+  .home-why-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .home-why-grid article:nth-child(1) {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 720px) {
+  .home-intro .inq-container,
+  .home-testimonials .inq-container {
+    border-radius: 24px;
+  }
+
+  .home-why-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .home-milestones .home-section-description {
+    margin-left: 0;
+  }
+
+  .home-faq-visual {
+    min-height: 360px;
+  }
+}

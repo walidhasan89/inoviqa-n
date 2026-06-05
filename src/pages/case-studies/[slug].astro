@@ -1,0 +1,243 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Button from "../../components/common/Button.astro";
+import { caseStudies } from "../../data/case-studies";
+
+import "../../styles/case-study-detail.css";
+
+export function getStaticPaths() {
+  return caseStudies.map((study) => ({
+    params: {
+      slug: study.slug,
+    },
+    props: {
+      study,
+    },
+  }));
+}
+
+const { study } = Astro.props;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: study.title,
+  description: study.seoDescription,
+  url: `https://inoviqa.com/case-studies/${study.slug}/`,
+  author: {
+    "@type": "Organization",
+    name: "Inoviqa LLC",
+    url: "https://inoviqa.com",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "Inoviqa LLC",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://inoviqa.com/assets/inoviqa-black-logo.png",
+    },
+  },
+};
+---
+
+<BaseLayout
+  title={study.seoTitle}
+  description={study.seoDescription}
+  path={`/case-studies/${study.slug}/`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <div class="case-detail-page">
+    <section class="case-detail-hero">
+      <div class="inq-container">
+        <div class="case-detail-hero-grid">
+          <div data-reveal>
+            <span class="case-detail-number">{study.number}</span>
+            <span class="inq-kicker">{study.category} / Case Study</span>
+
+            <h1 class="case-detail-title">{study.title}</h1>
+          </div>
+
+          <div class="case-detail-copy" data-reveal data-reveal-delay="140">
+            <span class="case-detail-status">{study.type}</span>
+            <p class="inq-lead">{study.summary}</p>
+
+            <div class="inq-hero-actions">
+              <Button href="/contact/">Book a Consultation</Button>
+              <Button href="/case-studies/" variant="outline">All Case Studies</Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-detail-intro">
+      <div class="inq-container">
+        <p class="case-detail-statement" data-reveal>
+          {study.outcome}
+        </p>
+      </div>
+    </section>
+
+    <section class="inq-section-tight">
+      <div class="inq-container">
+        <div class="case-detail-results-grid" data-reveal>
+          {
+            study.results.map((result) => (
+              <div class="case-detail-result">
+                <strong>{result.value}</strong>
+                <span>{result.label}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section-tight">
+      <div class="inq-container">
+        <div class="case-detail-overview-grid">
+          <article class="inq-card case-detail-overview-card" data-reveal data-parallax-card>
+            <div class="inq-card-content">
+              <span class="inq-kicker">Challenge</span>
+              <h2>What needed to change</h2>
+              <p>{study.challenge}</p>
+            </div>
+          </article>
+
+          <article
+            class="inq-card case-detail-overview-card"
+            data-reveal
+            data-reveal-delay="120"
+            data-parallax-card
+          >
+            <div class="inq-card-content">
+              <span class="inq-kicker">Solution</span>
+              <h2>How Inoviqa approached it</h2>
+              <p>{study.solution}</p>
+
+              <div class="case-detail-services">
+                {study.services.map((service) => <span>{service}</span>)}
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section">
+      <div class="inq-container">
+        <div class="case-detail-section-head">
+          <div data-reveal>
+            <span class="inq-kicker">Highlights</span>
+            <h2 class="case-detail-section-title">What the growth system focused on</h2>
+          </div>
+
+          <p class="case-detail-section-copy" data-reveal data-reveal-delay="120">
+            The strongest case studies come from clear decisions: what to fix, what to measure, and
+            how each section supports the business goal.
+          </p>
+        </div>
+
+        <div class="case-detail-highlight-grid">
+          {
+            study.highlights.map((item, index) => (
+              <article class="case-detail-highlight" data-reveal data-reveal-delay={String(index * 55)}>
+                <strong>{String(index + 1).padStart(2, "0")}</strong>
+                <span>{item}</span>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section-tight">
+      <div class="inq-container">
+        <div class="case-detail-section-head">
+          <div data-reveal>
+            <span class="inq-kicker">Process</span>
+            <h2 class="case-detail-section-title">How the project moved from problem to system</h2>
+          </div>
+
+          <p class="case-detail-section-copy" data-reveal data-reveal-delay="120">
+            Each project follows the same core thinking: audit the current state, plan the system,
+            improve the website, track key actions, then optimize with clarity.
+          </p>
+        </div>
+
+        <div class="case-detail-process-wrap">
+          {
+            study.process.map((step, index) => (
+              <article
+                class="case-detail-process-item"
+                data-reveal
+                data-reveal-delay={String(index * 70)}
+              >
+                <span class="case-detail-process-number">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section-tight">
+      <div class="inq-container">
+        <div class="case-detail-quote-card" data-reveal>
+          <blockquote>“{study.testimonial}”</blockquote>
+          <p>Representative client feedback direction — replace with verified client quote later.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section-tight">
+      <div class="inq-container">
+        <div class="case-detail-cta-card" data-reveal>
+          <div>
+            <span class="footer-kicker">Build your growth story</span>
+
+            <h2>Want a website system with this level of clarity?</h2>
+
+            <p>
+              Start with an audit. We will identify what is holding the website back and build a
+              practical plan across strategy, design, SEO, CRO, tracking, and automation.
+            </p>
+
+            <div class="inq-hero-actions case-detail-dark-actions">
+              <Button href="/contact/" variant="primary">Book a Consultation</Button>
+              <Button href="/services/" variant="outline">View Services</Button>
+            </div>
+          </div>
+
+          <div class="case-detail-cta-visual" aria-label="Case study growth system">
+            <div class="case-detail-cta-row">
+              <span>Challenge</span>
+              <span>Diagnose</span>
+            </div>
+            <div class="case-detail-cta-row">
+              <span>Strategy</span>
+              <span>Plan</span>
+            </div>
+            <div class="case-detail-cta-row">
+              <span>Website</span>
+              <span>Improve</span>
+            </div>
+            <div class="case-detail-cta-row">
+              <span>Tracking</span>
+              <span>Measure</span>
+            </div>
+            <div class="case-detail-cta-row">
+              <span>Growth</span>
+              <span>Scale</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

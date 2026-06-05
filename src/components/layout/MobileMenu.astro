@@ -1,0 +1,46 @@
+---
+type NavLink = {
+  label: string;
+  href: string;
+};
+
+interface Props {
+  links: readonly NavLink[];
+}
+
+const { links } = Astro.props;
+---
+
+<div class="mobile-menu-backdrop" data-mobile-backdrop hidden></div>
+
+<aside class="mobile-menu" id="mobile-menu" data-mobile-menu aria-hidden="true">
+  <div class="mobile-menu-panel">
+    <div class="mobile-menu-top">
+      <a class="mobile-menu-logo" href="/" aria-label="Inoviqa home">
+        <img src="https://inoviqa.com/assets/inoviqa-black-logo.png" alt="Inoviqa" />
+      </a>
+
+      <button class="mobile-menu-close" type="button" data-menu-close aria-label="Close menu">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <nav class="mobile-menu-nav" aria-label="Mobile navigation">
+      {
+        links.map((item, index) => (
+          <a href={item.href} style={`--item-index: ${index};`}>
+            <span>{item.label}</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="mobile-menu-cta">
+      <p>Build a website that attracts, converts, tracks, optimizes, and scales.</p>
+      <a href="/contact/">Book a Consultation</a>
+    </div>
+  </div>
+</aside>
+

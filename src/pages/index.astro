@@ -1,17 +1,750 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/common/Button.astro";
 
+import {
+  auditItems,
+  caseStudies,
+  faqs,
+  growthCards,
+  heroProof,
+  milestones,
+  processSteps,
+  products,
+  services,
+  testimonialBrands,
+  whyReasons,
+} from "../data/home";
+
+import "../styles/home.css";
+import "../styles/home-lower-polish.css";
+import "../styles/home-refinements.css";
+import "../styles/home-featured-cases.css";
+import "../styles/home-why-redesign.css";
+import "../styles/home-services-redesign.css";
+import "../styles/home-targeted-updates.css";
+import "../styles/home-testimonials-carousel.css";
+
+const homeCaseScreenshotFor = (url: string) =>
+  `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=1200`;
+
+const homeCaseHostFor = (url: string) => {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
+};
+
+const homeCaseImprovementsFor = (category: string) => {
+  if (category.toLowerCase().includes("ecommerce") || category.toLowerCase().includes("fulfillment")) {
+    return ["Service clarity", "Trust flow", "Conversion path"];
+  }
+
+  if (category.toLowerCase().includes("local")) {
+    return ["Local trust", "CTA structure", "Lead capture"];
+  }
+
+  if (category.toLowerCase().includes("recruitment")) {
+    return ["Audience clarity", "Trust signals", "User journey"];
+  }
+
+  return ["Positioning", "Visual clarity", "Inquiry readiness"];
+};
+const homeTestimonials = [
+  {
+    quote: "The website finally explains the offer in a way people can understand quickly. The structure feels cleaner, the pages feel more intentional, and the whole experience is easier to trust.",
+    name: "Sonia Rahman",
+    role: "Personal Brand Consultant",
+    project: "Soniya Behrens",
+  },
+  {
+    quote: "We needed the site to feel local, trustworthy, and simple for customers to take action. The improved layout made the service flow much clearer without making the website feel crowded.",
+    name: "Mason Walker",
+    role: "Exterior Cleaning Owner",
+    project: "Silk Waters Windows & Eaves",
+  },
+  {
+    quote: "The biggest difference was clarity. The website stopped feeling like a collection of sections and started feeling like a real journey for the right audience.",
+    name: "Priya Coleman",
+    role: "Recruitment Platform Lead",
+    project: "Jointalently",
+  },
+  {
+    quote: "The new direction helped us communicate fulfillment services in a much more confident way. It became easier for visitors to understand what we do and why they should reach out.",
+    name: "Daniel Foster",
+    role: "Operations Founder",
+    project: "Fulfill My Orders",
+  },
+  {
+    quote: "The ecommerce experience became more focused. Product discovery, trust, and the buying path all felt more polished after the structure was improved.",
+    name: "Amina Carter",
+    role: "Retail Brand Owner",
+    project: "Leds N Baggs",
+  },
+  {
+    quote: "The website now feels more professional and more useful for business conversations. It gives visitors a better first impression and communicates credibility faster.",
+    name: "Nabil Hossain",
+    role: "Corporate Business Director",
+    project: "Pason Global",
+  },
+  {
+    quote: "The product message became easier to follow. Instead of forcing users to figure things out, the page now guides them through the value clearly.",
+    name: "Emily Brooks",
+    role: "Product Marketing Manager",
+    project: "AuditPilot",
+  },
+  {
+    quote: "The site feels sharper and more conversion-aware. The messaging, sections, and calls to action now work together instead of competing for attention.",
+    name: "Ryan Mitchell",
+    role: "SaaS Founder",
+    project: "Invictuss",
+  },
+  {
+    quote: "I liked that the work was not just visual. The improvements connected design, trust, performance, and the path a visitor takes before contacting us.",
+    name: "Olivia Bennett",
+    role: "Service Business Owner",
+    project: "The Dog Ranch",
+  },
+  {
+    quote: "The experience felt strategic from the beginning. Every change had a reason, and the final result made the offer easier to understand and easier to act on.",
+    name: "Marcus Reed",
+    role: "Leadership Coach",
+    project: "Leadership Compass Online",
+  },
+] as const;
+const homeSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Inoviqa LLC",
+  url: "https://inoviqa.com",
+  description:
+    "Inoviqa builds conversion-focused websites, SEO systems, analytics tracking, CRO strategies, and automation workflows.",
+};
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Inoviqa — Digital Growth Systems for Websites, SEO, CRO & Automation"
+  description="Inoviqa builds conversion-focused websites, SEO systems, analytics tracking, CRO strategies, and automation workflows that help businesses attract, convert, track, and scale."
+  path="/"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(homeSchema)} />
+
+  <div class="home-page">
+    <!-- 02. Hero -->
+    <section class="home-hero">
+      <div class="inq-container">
+        <div class="home-hero-grid">
+          <div data-reveal>
+            <span class="home-kicker">AGENCY THAT BUILDS GROWTH SYSTEMS</span>
+            <h1>Digital growth systems for websites that need to attract, convert, track, and scale.</h1>
+          </div>
+
+          <div class="home-hero-copy" data-reveal data-reveal-delay="120">
+            <p>
+              Inoviqa helps businesses turn underperforming websites into measurable growth engines through conversion-focused design, SEO, analytics, CRO, and automation.
+            </p>
+
+            <div class="home-proof-row">
+              {heroProof.map((item) => <span>{item}</span>)}
+            </div>
+
+            <p>Websites. SEO. CRO. Tracking. Automation. Built to work together.</p>
+
+            <div class="inq-hero-actions">
+              <Button href="/contact/">Book a Consultation</Button>
+              <Button href="/services/" variant="outline">View Services</Button>
+            </div>
+          </div>
+        </div>
+
+        <div class="home-brand-hero" data-reveal data-reveal-delay="180" data-parallax-card>
+          <strong>Inoviqa LLC</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03. Big Brand Statement -->
+    <section class="home-section-tight home-intro">
+      <div class="inq-container">
+        <span class="home-kicker" data-reveal>ABOUT — 01</span>
+
+        <h2 data-reveal>
+          We reshape digital presence into growth systems —
+          <span> combining strategy, design, SEO, tracking, automation, and product thinking to help businesses grow with clarity.</span>
+        </h2>
+
+        <p class="home-section-description" data-reveal data-reveal-delay="120">
+          Your website should not only look professional. It should explain your offer, build trust, bring the right visitors, convert more leads, and show what is working.
+        </p>
+      </div>
+    </section>
+
+    <!-- 04. Growth System Cards -->
+    <section class="home-section-tight">
+      <div class="inq-container">
+        <div class="home-section-head">
+          <div data-reveal>
+            <span class="home-kicker">GROWTH SYSTEM</span>
+            <h2>A website should do more than exist.</h2>
+          </div>
+
+          <p data-reveal data-reveal-delay="120">
+            Most businesses do not need another random redesign. They need a complete system that connects traffic, trust, conversion, data, and follow-up.
+          </p>
+        </div>
+
+        <div class="home-framework-grid" data-reveal>
+          {growthCards.map((item) => (
+            <article>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+            <!-- 05. Services Accordion -->
+    <section class="home-services-redesign-section">
+      <div class="inq-container">
+        <div class="home-services-redesign">
+          <aside class="home-services-sticky" data-reveal>
+            <div class="home-services-sticky-card" data-parallax-card>
+              <span class="home-kicker">SERVICES — 02</span>
+
+              <h2>Our <span>Services</span></h2>
+
+              <p>
+                Growth services built to make your website perform better, not just look better. Inoviqa connects strategy, design, SEO, CRO, analytics, and automation into one practical growth system for your business.
+              </p>
+
+              <div class="home-services-mini-grid">
+                <div class="home-services-mini-card">
+                  <strong>6</strong>
+                  <span>Core growth services</span>
+                </div>
+
+                <div class="home-services-mini-card">
+                  <strong>1</strong>
+                  <span>Connected growth system</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          <div class="home-services-stack" data-home-services>
+            {services.map((service, index) => (
+              <article class:list={["home-service-item", { "is-open": index === 0 }]}>
+                <button class="home-service-button" type="button" data-home-service-button aria-expanded={index === 0 ? "true" : "false"}>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <strong>{service.title}</strong>
+                  <em>+</em>
+                </button>
+
+                <div class="home-service-panel" data-home-service-panel>
+                  <div>
+                    <p>{service.text}</p>
+
+                    <div class="home-tags">
+                      {service.items.map((item) => <span>{item}</span>)}
+                    </div>
+
+                    <div class="home-service-actions">
+                      <a class="home-service-page-button" href={service.href}>View Service Page ↗</a>
+                      <a class="home-service-secondary-link" href="/contact/">Book Consultation</a>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+<!-- 06. Work / Case Studies Preview -->
+    <section class="home-section">
+      <div class="inq-container">
+        <div class="home-section-head">
+          <div data-reveal>
+            <span class="home-kicker">PROJECTS — 03</span>
+            <h2>Our <span>Work</span></h2>
+          </div>
+
+          <p data-reveal data-reveal-delay="120">
+            Growth systems built across websites, SEO, tracking, automation, and product experiences. Every project starts with one goal: make the digital experience clearer, faster, more measurable, and more useful for business growth.
+          </p>
+        </div>
+
+        <div class="home-work-grid home-featured-cases">
+          {caseStudies.map((item, index) => (
+            <a class="home-work-card" href={item.href} target="_blank" rel="noopener noreferrer" data-reveal data-reveal-delay={String(index * 70)}>
+              <div class={`home-work-visual home-work-visual-${(index % 4) + 1}`}>
+                <img src={homeCaseScreenshotFor(item.href)} alt={`${item.title} website snapshot`} loading="lazy" decoding="async" />
+                <span>{homeCaseHostFor(item.href)}</span>
+              </div>
+
+              <div class="home-work-info">
+                <div>
+                  <small class="home-case-category">{item.category}</small>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+
+                  <div class="home-case-improvements">
+                    {homeCaseImprovementsFor(item.category).map((point) => <em>{point}</em>)}
+                  </div>
+                </div>
+
+                <span>↗</span>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <div class="inq-hero-actions" style="margin-top: 28px;">
+          <Button href="/case-studies/">View Case Studies</Button>
+        </div>
+      </div>
+    </section>
+<!-- 07. Agency Milestones -->
+    <section class="home-milestones">
+      <div class="inq-container">
+        <span class="home-kicker" data-reveal>AGENCY MILESTONES</span>
+
+        <div class="home-milestone-grid" data-reveal data-reveal-delay="120">
+          {milestones.map((item) => (
+            <div>
+              <strong>{item.value}</strong>
+              <span>{item.label}</span>
+            </div>
+          ))}
+        </div>
+
+        <p class="home-section-description" data-reveal>
+          Built with strategy, design, development, SEO, analytics, and automation working together.
+        </p>
+      </div>
+    </section>
+
+        <!-- 08. Why Inoviqa -->
+    <section class="home-why-section">
+      <div class="inq-container">
+        <div class="home-why-redesign">
+          <aside class="home-why-left" data-reveal>
+            <div class="home-why-sticky-card" data-parallax-card>
+              <span class="home-kicker">WHY INOVIQA — 04</span>
+
+              <h2>Why <span>Inoviqa</span></h2>
+
+              <p>
+                A different kind of website partner for businesses that care about measurable growth. We focus on the full system behind traffic, clarity, trust, conversion, tracking, and scale.
+              </p>
+
+              <div class="home-why-mini-stat-grid">
+                <div class="home-why-mini-stat">
+                  <strong>6</strong>
+                  <span>Growth architecture principles</span>
+                </div>
+
+                <div class="home-why-mini-stat">
+                  <strong>100%</strong>
+                  <span>Strategy-first execution</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          <div class="home-why-panel-grid">
+            {whyReasons.map((item, index) => (
+              <article class="home-why-panel" data-reveal data-reveal-delay={String(index * 70)}>
+                <span class="home-why-number">{String(index + 1).padStart(2, "0")}</span>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 09. Built by Inoviqa / Products -->
+    <section class="home-section">
+      <div class="inq-container">
+        <div class="home-section-head">
+          <div data-reveal>
+            <span class="home-kicker">PRODUCTS — 05</span>
+            <h2>Built by <span>Inoviqa</span></h2>
+          </div>
+
+          <p data-reveal data-reveal-delay="120">
+            We build tools from real business problems. Inoviqa is not only a service company. We also build products, Chrome extensions, and automation systems that support SEO, lead generation, communication, ecommerce, and operations.
+          </p>
+        </div>
+
+        <div class="home-work-grid home-products-grid">
+          {products.map((product, index) => (
+            <a class="home-work-card" href={product.href} data-reveal data-reveal-delay={String(index * 70)}>
+              <div class={`home-work-visual home-work-visual-${(index % 4) + 1}`}></div>
+
+              <div class="home-work-info">
+                <div>
+                  <h3>{product.title}</h3>
+                  <p>{product.text}</p>
+                </div>
+
+                <span>↗</span>
+              </div>
+            </a>
+          ))}
+
+          <a class="home-product-cta-card" href="/products/" data-reveal data-reveal-delay="350">
+            <span>Explore products</span>
+
+            <div>
+              <h3>See all tools built by Inoviqa.</h3>
+              <p>
+                Explore our product ecosystem across website audits, lead generation, reply workflows, Shopify productivity, and automation systems.
+              </p>
+
+              <div class="home-product-cta-button">Explore Products ↗</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+<!-- 10. Process -->
+    <section class="home-section-tight">
+      <div class="inq-container">
+        <div class="home-section-head">
+          <div data-reveal>
+            <span class="home-kicker">PROCESS — 06</span>
+            <h2>How We <span>Work</span></h2>
+          </div>
+
+          <p data-reveal data-reveal-delay="120">
+            From audit to launch, every step is built around clarity, performance, and growth.
+          </p>
+        </div>
+
+        <div class="home-process-list">
+          {processSteps.map(([number, title, text]) => (
+            <article data-reveal>
+              <strong>{number}</strong>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. Website Audit CTA -->
+    <section class="home-dark-section home-audit-cta-section">
+      <div class="inq-container">
+        <div class="home-dark-card" data-reveal>
+          <div>
+            <span class="home-kicker">WEBSITE AUDIT — 07</span>
+            <h2>Not sure what is holding your website back? Start with an audit.</h2>
+            <p>
+              A website audit helps uncover hidden issues that may be costing you leads, rankings, trust, and revenue. We review your website from a business, SEO, UX, CRO, speed, and tracking perspective.
+            </p>
+          </div>
+
+          <div>
+            <div class="home-dark-pills">
+              {auditItems.map((item) => <span>{item}</span>)}
+            </div>
+
+            <div class="inq-hero-actions">
+              <Button href="/contact/">Book a Consultation</Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+        <!-- 12. Testimonials -->
+    <section class="home-testimonials-redesign" data-home-testimonials>
+      <div class="inq-container">
+        <div class="home-testimonials-shell" data-reveal>
+          <div class="home-testimonials-top">
+            <div>
+              <span class="home-kicker">REVIEWS — 08</span>
+              <h2>Client words that feel <span>real, clear, and human.</span></h2>
+            </div>
+
+            <div class="home-testimonials-summary">
+              <p>
+                Human-written testimonial drafts based on the kind of growth work shown across our case studies: clearer messaging, better trust, stronger structure, and more useful website experiences.
+              </p>
+
+              <div class="home-testimonial-controls">
+                <button type="button" aria-label="Previous testimonial" data-home-testimonial-prev>‹</button>
+                <button type="button" aria-label="Next testimonial" data-home-testimonial-next>›</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="home-testimonial-carousel">
+            <div class="home-testimonial-track" data-home-testimonial-track>
+              {homeTestimonials.map((item) => (
+                <article class="home-testimonial-card">
+                  <div>
+                    <div class="home-testimonial-quote-mark">“</div>
+                    <blockquote>{item.quote}</blockquote>
+                  </div>
+
+                  <div class="home-testimonial-meta">
+                    <div class="home-testimonial-meta-top">
+                      <div class="home-testimonial-avatar">{item.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</div>
+
+                      <div>
+                        <strong>{item.name}</strong>
+                        <span>{item.role}</span>
+                      </div>
+                    </div>
+
+                    <div class="home-testimonial-project">{item.project}</div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div class="home-testimonial-footer">
+            <div class="home-testimonial-counter" data-home-testimonial-counter>01 / {String(homeTestimonials.length).padStart(2, "0")}</div>
+            <div class="home-testimonial-dots" data-home-testimonial-dots></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const initHomeTestimonialsCarousel = () => {
+        document.querySelectorAll("[data-home-testimonials]").forEach((carousel) => {
+          if (carousel.getAttribute("data-carousel-ready") === "true") return;
+          carousel.setAttribute("data-carousel-ready", "true");
+
+          const track = carousel.querySelector("[data-home-testimonial-track]");
+          const prev = carousel.querySelector("[data-home-testimonial-prev]");
+          const next = carousel.querySelector("[data-home-testimonial-next]");
+          const counter = carousel.querySelector("[data-home-testimonial-counter]");
+          const dotsWrap = carousel.querySelector("[data-home-testimonial-dots]");
+          const cards = Array.from(carousel.querySelectorAll(".home-testimonial-card"));
+
+          if (!track || !cards.length) return;
+
+          let current = 0;
+
+          const perView = () => {
+            if (window.innerWidth <= 720) return 1;
+            if (window.innerWidth <= 1100) return 2;
+            return 3;
+          };
+
+          const getGap = () => {
+            const styles = window.getComputedStyle(track);
+            return parseFloat(styles.gap || styles.columnGap || "0") || 0;
+          };
+
+          const buildDots = () => {
+            if (!dotsWrap) return;
+
+            dotsWrap.innerHTML = "";
+            const maxIndex = Math.max(0, cards.length - perView());
+
+            for (let i = 0; i <= maxIndex; i += 1) {
+              const dot = document.createElement("button");
+              dot.type = "button";
+              dot.className = "home-testimonial-dot";
+              dot.setAttribute("aria-label", `Go to testimonial ${i + 1}`);
+              dot.addEventListener("click", () => {
+                current = i;
+                update();
+              });
+              dotsWrap.appendChild(dot);
+            }
+          };
+
+          const update = () => {
+            const maxIndex = Math.max(0, cards.length - perView());
+            current = Math.max(0, Math.min(current, maxIndex));
+
+            const cardWidth = cards[0].getBoundingClientRect().width + getGap();
+            track.style.transform = `translate3d(${-current * cardWidth}px, 0, 0)`;
+
+            if (counter) {
+              counter.textContent = `${String(current + 1).padStart(2, "0")} / ${String(cards.length).padStart(2, "0")}`;
+            }
+
+            if (dotsWrap) {
+              Array.from(dotsWrap.children).forEach((dot, index) => {
+                dot.classList.toggle("is-active", index === current);
+              });
+            }
+          };
+
+          prev?.addEventListener("click", () => {
+            const maxIndex = Math.max(0, cards.length - perView());
+            current = current <= 0 ? maxIndex : current - 1;
+            update();
+          });
+
+          next?.addEventListener("click", () => {
+            const maxIndex = Math.max(0, cards.length - perView());
+            current = current >= maxIndex ? 0 : current + 1;
+            update();
+          });
+
+          window.addEventListener("resize", () => {
+            buildDots();
+            update();
+          }, { passive: true });
+
+          buildDots();
+          update();
+        });
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initHomeTestimonialsCarousel);
+      } else {
+        initHomeTestimonialsCarousel();
+      }
+    </script>
+<!-- 13. FAQ -->
+    <section class="home-section home-faq-section" id="faq">
+      <div class="inq-container">
+        <div class="home-faq-layout">
+          <aside class="home-faq-visual" data-reveal data-parallax-card>
+            <span class="home-kicker">FAQ — 09</span>
+
+            <div class="home-faq-icon" aria-hidden="true">
+              <span>?</span>
+            </div>
+
+            <h2>Frequently Asked Questions</h2>
+
+            <p>
+              Clear answers about website redesign, SEO, CRO, tracking, automation, and working with Inoviqa.
+            </p>
+          </aside>
+
+          <div class="home-faq-content">
+            <div class="home-faq-wrap" data-home-faq>
+              {faqs.map(([question, answer], index) => (
+                <article class:list={["home-faq-item", { "is-open": index === 0 }]}>
+                  <button type="button" data-home-faq-button aria-expanded={index === 0 ? "true" : "false"}>
+                    <span>{question}</span>
+                    <em>+</em>
+                  </button>
+
+                  <div data-home-faq-panel>
+                    <p>{answer}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+        <!-- 14. Consultation CTA -->
+    <section class="home-consultation-section">
+      <div class="inq-container">
+        <div class="home-consultation-card" data-reveal>
+          <div class="home-consultation-content">
+            <div class="home-consultation-label">BOOK A CONSULTATION</div>
+
+            <h2>Let’s find the clearest path to make your website <span>attract, convert, and grow.</span></h2>
+          </div>
+
+          <div class="home-consultation-side">
+            <p>
+              Book a consultation meeting to review your website, business goals, conversion gaps, SEO opportunities, tracking needs, and the fastest growth system we can build for you.
+            </p>
+
+            <div class="home-consultation-actions">
+              <a class="home-consultation-primary" href="/contact/">Book a Consultation ↗</a>
+              <a class="home-consultation-secondary" href="/case-studies/">View Case Studies</a>
+            </div>
+
+            <div class="home-consultation-points">
+              <div class="home-consultation-point">
+                <span>✓</span>
+                Website clarity and conversion review
+              </div>
+
+              <div class="home-consultation-point">
+                <span>✓</span>
+                SEO, tracking, and growth opportunity direction
+              </div>
+
+              <div class="home-consultation-point">
+                <span>✓</span>
+                Practical next-step roadmap for your business
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const setupHomeAccordion = (itemSelector, buttonSelector, panelSelector) => {
+      const items = Array.from(document.querySelectorAll(itemSelector));
+
+      const update = () => {
+        items.forEach((item) => {
+          const panel = item.querySelector(panelSelector);
+          const button = item.querySelector(buttonSelector);
+
+          if (!(panel instanceof HTMLElement)) return;
+
+          const isOpen = item.classList.contains("is-open");
+          panel.style.maxHeight = isOpen ? `${panel.scrollHeight}px` : "0px";
+          button?.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        });
+      };
+
+      items.forEach((item) => {
+        const button = item.querySelector(buttonSelector);
+
+        button?.addEventListener("click", () => {
+          const wasOpen = item.classList.contains("is-open");
+
+          items.forEach((currentItem) => currentItem.classList.remove("is-open"));
+
+          if (!wasOpen) {
+            item.classList.add("is-open");
+          }
+
+          update();
+        });
+      });
+
+      update();
+      window.addEventListener("resize", update, { passive: true });
+    };
+
+    const initHome = () => {
+      setupHomeAccordion(".home-service-item", "[data-home-service-button]", "[data-home-service-panel]");
+      setupHomeAccordion(".home-faq-item", "[data-home-faq-button]", "[data-home-faq-panel]");
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initHome);
+    } else {
+      initHome();
+    }
+  </script>
+</BaseLayout>
+
+
+
+
+
+
+
+

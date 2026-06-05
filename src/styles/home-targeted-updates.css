@@ -1,0 +1,229 @@
+﻿/* ==================================================
+   TARGETED HOME UPDATES
+   01. Service page buttons
+   02. Why Inoviqa sticky fix
+   03. Products empty card CTA
+================================================== */
+
+/* 01. Services — real page buttons with better spacing */
+
+.home-services-stack .home-service-panel > div {
+  padding-bottom: clamp(28px, 3vw, 38px) !important;
+}
+
+.home-service-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: clamp(22px, 3vw, 32px);
+}
+
+.home-service-page-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 13px 20px;
+  border-radius: 999px;
+  background: #101014;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  transition:
+    transform 350ms cubic-bezier(.22,1,.36,1),
+    background 350ms cubic-bezier(.22,1,.36,1),
+    box-shadow 350ms cubic-bezier(.22,1,.36,1);
+}
+
+.home-service-page-button:hover {
+  transform: translateY(-2px);
+  background: #315cff;
+  box-shadow: 0 16px 42px rgba(49, 92, 255, 0.26);
+}
+
+.home-service-secondary-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 13px 18px;
+  border: 1px solid rgba(16, 16, 20, 0.10);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.62);
+  color: rgba(16,16,20,0.72);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.home-services-stack .home-service-item:nth-child(1) .home-service-secondary-link,
+.home-services-stack .home-service-item:nth-child(2) .home-service-secondary-link,
+.home-services-stack .home-service-item:nth-child(4) .home-service-secondary-link {
+  border-color: rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.78);
+}
+
+.home-services-stack .home-tags a.home-service-link {
+  display: none !important;
+}
+
+/* 02. Why Inoviqa — sticky left column */
+
+.home-page,
+.home-why-section,
+.home-why-section .inq-container,
+.home-why-redesign {
+  overflow: visible !important;
+}
+
+.home-why-section {
+  position: relative;
+}
+
+.home-why-redesign {
+  align-items: start !important;
+}
+
+.home-why-left {
+  position: sticky !important;
+  top: 112px !important;
+  align-self: start !important;
+  height: max-content !important;
+  z-index: 2;
+}
+
+.home-why-sticky-card {
+  will-change: transform;
+}
+
+/* 03. Products — CTA card in empty 6th column */
+
+.home-products-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.home-products-grid .home-work-card {
+  min-height: 100%;
+}
+
+.home-product-cta-card {
+  position: relative;
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(24px, 4vw, 38px);
+  border: 1px solid rgba(16,16,20,0.08);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(223,255,51,0.78), transparent 92px),
+    radial-gradient(circle at 88% 14%, rgba(139,92,246,0.36), transparent 210px),
+    linear-gradient(135deg, #101014 0%, #315cff 72%, #8fa0ff 100%);
+  color: #fff;
+  overflow: hidden;
+  transition:
+    transform 420ms cubic-bezier(.22,1,.36,1),
+    box-shadow 420ms cubic-bezier(.22,1,.36,1);
+}
+
+.home-product-cta-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.28;
+}
+
+.home-product-cta-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.home-product-cta-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 100px rgba(49, 92, 255, 0.25);
+}
+
+.home-product-cta-card span {
+  width: fit-content;
+  padding: 9px 12px;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.72);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  backdrop-filter: blur(18px);
+}
+
+.home-product-cta-card h3 {
+  max-width: 420px;
+  margin: auto 0 0;
+  color: #fff !important;
+  font-size: clamp(34px, 4vw, 56px) !important;
+  font-weight: 600 !important;
+  line-height: 0.96;
+}
+
+.home-product-cta-card p {
+  max-width: 420px;
+  margin: 18px 0 0;
+  color: rgba(255,255,255,0.70);
+  font-size: 15px !important;
+  line-height: 1.6;
+}
+
+.home-product-cta-button {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  min-height: 48px;
+  padding: 13px 18px;
+  border-radius: 999px;
+  background: #fff;
+  color: #101014;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+@media (max-width: 1100px) {
+  .home-why-left {
+    position: relative !important;
+    top: auto !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .home-products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-product-cta-card {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-service-actions {
+    flex-direction: column;
+  }
+
+  .home-service-page-button,
+  .home-service-secondary-link {
+    width: 100%;
+  }
+
+  .home-product-cta-card {
+    min-height: 280px;
+    border-radius: 22px;
+  }
+}

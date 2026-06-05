@@ -1,0 +1,297 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Button from "../../components/common/Button.astro";
+
+import {
+  serviceFramework,
+  serviceProofPoints,
+  servicesFaqs,
+  servicesPageServices,
+} from "../../data/services";
+
+import "../../styles/services.css";
+---
+
+<BaseLayout
+  title="Services — Website Growth Systems, SEO, CRO, Analytics & Automation"
+  description="Explore Inoviqa services for website growth systems, SEO and local visibility, CRO and UX optimization, analytics tracking, lead generation, automation, and product builds."
+  path="/services/"
+>
+  <div class="services-page">
+    <section class="services-hero">
+      <div class="inq-container">
+        <div class="services-hero-grid">
+          <div data-reveal>
+            <span class="inq-kicker">Services</span>
+
+            <h1 class="services-hero-title">
+              Our <span class="inq-gradient-text">Services</span>
+            </h1>
+          </div>
+
+          <div class="services-hero-copy" data-reveal data-reveal-delay="140">
+            <p class="inq-lead">
+              Inoviqa builds connected digital growth systems — combining strategy, premium website
+              design, SEO, CRO, analytics, lead generation, automation, and product thinking.
+            </p>
+
+            <div class="services-hero-note" aria-label="Inoviqa growth framework">
+              <span>Attract</span>
+              <span>Convert</span>
+              <span>Track</span>
+              <span>Optimize</span>
+              <span>Scale</span>
+            </div>
+
+            <div class="inq-hero-actions">
+              <Button href="/contact/">Book a Consultation</Button>
+              <Button href="#services-list" variant="outline">Explore Services</Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-framework">
+      <div class="inq-container">
+        <div class="services-framework-grid" data-reveal>
+          {
+            serviceFramework.map((item) => (
+              <article class="services-framework-item">
+                <strong>{item.label}</strong>
+                <p>{item.text}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section" id="services-list">
+      <div class="inq-container">
+        <div class="services-section-head">
+          <div data-reveal>
+            <span class="inq-kicker">Growth systems</span>
+            <h2 class="services-section-title">Services built around measurable business outcomes</h2>
+          </div>
+
+          <p class="services-section-copy" data-reveal data-reveal-delay="120">
+            Each service can stand alone, but the strongest results come when strategy, design,
+            visibility, tracking, optimization, and automation work together.
+          </p>
+        </div>
+
+        <div class="services-accordion" data-services-accordion>
+          {
+            servicesPageServices.map((service, index) => (
+              <article class:list={["services-item", { "is-open": index === 0 }]}>
+                <button
+                  class="services-item-button"
+                  type="button"
+                  aria-expanded={index === 0 ? "true" : "false"}
+                  data-services-button
+                >
+                  <span class="services-item-number">{service.number}</span>
+
+                  <span class="services-item-title-wrap">
+                    <span class="services-item-eyebrow">{service.eyebrow}</span>
+                    <h3 class="services-item-title">{service.title}</h3>
+                  </span>
+
+                  <span class="services-item-summary">{service.summary}</span>
+                  <span class="services-item-icon" aria-hidden="true">+</span>
+                </button>
+
+                <div class="services-item-panel" data-services-panel>
+                  <div class="services-item-panel-inner">
+                    <div>
+                      <p class="services-item-description">{service.description}</p>
+
+                      <div class="services-outcomes">
+                        {service.outcomes.map((outcome) => <span>{outcome}</span>)}
+                      </div>
+
+                      <a class="services-item-link" href={service.href}>
+                        View service page
+                        <span aria-hidden="true">→</span>
+                      </a>
+                    </div>
+
+                    <div class="services-deliverables">
+                      {service.deliverables.map((item) => <span>{item}</span>)}
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="services-proof">
+      <div class="inq-container">
+        <div class="services-proof-grid" data-reveal>
+          {
+            serviceProofPoints.map((item) => (
+              <div class="services-proof-item">
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section-tight">
+      <div class="inq-container">
+        <div class="services-system-card" data-reveal>
+          <div>
+            <span class="footer-kicker">Website Audit — 10</span>
+
+            <h2>Not sure which service your business needs first?</h2>
+
+            <p>
+              Start with a growth audit. We identify conversion friction, SEO gaps, weak tracking,
+              UX issues, unclear messaging, and the highest-value opportunities to improve your
+              website as <strong>A Measurable Business Asset.</strong>
+            </p>
+
+            <div class="inq-hero-actions">
+              <Button href="/contact/" variant="primary">Start Your Audit</Button>
+              <Button href="/" variant="outline">Back to Home</Button>
+            </div>
+          </div>
+
+          <div class="services-system-visual" aria-label="Audit focus areas">
+            <div class="services-system-row">
+              <span>Website clarity</span>
+              <span>Audit</span>
+            </div>
+            <div class="services-system-row">
+              <span>SEO structure</span>
+              <span>Audit</span>
+            </div>
+            <div class="services-system-row">
+              <span>Conversion flow</span>
+              <span>Audit</span>
+            </div>
+            <div class="services-system-row">
+              <span>Tracking gaps</span>
+              <span>Audit</span>
+            </div>
+            <div class="services-system-row">
+              <span>Growth opportunity</span>
+              <span>Audit</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="inq-section" id="faq">
+      <div class="inq-container">
+        <div class="services-section-head">
+          <div data-reveal>
+            <span class="inq-kicker">FAQ</span>
+            <h2 class="services-section-title">Questions about Inoviqa services?</h2>
+          </div>
+
+          <p class="services-section-copy" data-reveal data-reveal-delay="120">
+            Quick answers about website redesigns, SEO, CRO, analytics, tracking, lead generation,
+            automation, and product builds.
+          </p>
+        </div>
+
+        <div class="services-faq-wrap" data-services-faq>
+          {
+            servicesFaqs.map((item, index) => (
+              <article class:list={["services-faq-item", { "is-open": index === 0 }]}>
+                <button
+                  class="services-faq-button"
+                  type="button"
+                  aria-expanded={index === 0 ? "true" : "false"}
+                  data-services-faq-button
+                >
+                  <span>{item.question}</span>
+                  <span aria-hidden="true">+</span>
+                </button>
+
+                <div class="services-faq-panel" data-services-faq-panel>
+                  <p>{item.answer}</p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const setupServicesAccordion = (
+      rootSelector,
+      itemSelector,
+      buttonSelector,
+      panelSelector,
+    ) => {
+      const roots = document.querySelectorAll(rootSelector);
+
+      roots.forEach((root) => {
+        const items = Array.from(root.querySelectorAll(itemSelector));
+
+        const setPanelHeights = () => {
+          items.forEach((item) => {
+            const panel = item.querySelector(panelSelector);
+            if (!panel) return;
+
+            if (item.classList.contains("is-open")) {
+              panel.style.maxHeight = `${panel.scrollHeight}px`;
+            } else {
+              panel.style.maxHeight = "0px";
+            }
+          });
+        };
+
+        items.forEach((item) => {
+          const button = item.querySelector(buttonSelector);
+
+          button?.addEventListener("click", () => {
+            const isOpen = item.classList.contains("is-open");
+
+            items.forEach((currentItem) => {
+              currentItem.classList.remove("is-open");
+              currentItem.querySelector(buttonSelector)?.setAttribute("aria-expanded", "false");
+            });
+
+            if (!isOpen) {
+              item.classList.add("is-open");
+              button.setAttribute("aria-expanded", "true");
+            }
+
+            setPanelHeights();
+          });
+        });
+
+        setPanelHeights();
+        window.addEventListener("resize", setPanelHeights, { passive: true });
+      });
+    };
+
+    setupServicesAccordion(
+      "[data-services-accordion]",
+      ".services-item",
+      "[data-services-button]",
+      "[data-services-panel]",
+    );
+
+    setupServicesAccordion(
+      "[data-services-faq]",
+      ".services-faq-item",
+      "[data-services-faq-button]",
+      "[data-services-faq-panel]",
+    );
+  </script>
+</BaseLayout>
+
